@@ -1,21 +1,18 @@
 class OffersController < ApplicationController
+  # before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
-  
+  def home
+    @offers = Offer.all
+  end
 
-    # before_action :set_offer, only: [:show, :edit, :update, :destroy]
+  def show
+    @offer = Offer.find(params[:id])
+  end
 
-    def home
-      @offers = Offer.all
-    end
-    
-    def show
-      @offer = Offer.find(params[:id])
-    end
-    
     # def new
     #     @offer = Offer.new
     # end
-    
+
     # def create
     #     @offer = Offer.new(offer_params)
     #     if @offer.save
@@ -24,10 +21,10 @@ class OffersController < ApplicationController
     #     render :new
     #     end
     # end
-    
+
     # def edit
     # end
-    
+
     # def update
     #     if @offer.update(offer_params)
     #     redirect_to @offer, notice: 'Offer was successfully updated.'
@@ -35,18 +32,18 @@ class OffersController < ApplicationController
     #     render :edit
     #     end
     # end
-    
+
     # def destroy
     #     @offer.destroy
     #     redirect_to offers_url, notice: 'Offer was successfully destroyed.'
     # end
-    
+
     # private
-    
+
     # def set_offer
     #     @offer = Offer.find(params[:id])
     # end
-    
+
     # def offer_params
     #     params.require(:offer).permit(:title, :description, :price)
     # end
