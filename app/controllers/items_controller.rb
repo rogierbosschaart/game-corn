@@ -1,7 +1,4 @@
 class ItemsController < ApplicationController
-  has_many :offers
-  belongs_to :user
-  
   before_action :authenticate_user!, only: [:new, :create]
   before_action :set_restaurant, only: [:show]
 

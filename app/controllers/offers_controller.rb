@@ -1,5 +1,4 @@
 class OffersController < ApplicationController
-  belongs_to :item
   # before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   # def home
