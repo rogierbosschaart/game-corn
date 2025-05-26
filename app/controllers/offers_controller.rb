@@ -1,12 +1,16 @@
 class OffersController < ApplicationController
+
+  
+
     # before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
     def home
-        @offers = Offer.all
+      @offers = Offer.all
     end
     
-    # def show
-    # end
+    def show
+      @offer = Offer.find(params[:id])
+    end
     
     # def new
     #     @offer = Offer.new
