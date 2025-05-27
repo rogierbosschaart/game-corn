@@ -6,12 +6,7 @@
     <div class="card">
       <h2><%= item.title %></h2>
 
-      <% if item.image.attached? %>
-        <%= image_tag item.image, class: "game-image", alt: "Image of #{item.title}" %>
-      <% else %>
-        <%= image_tag "placeholder_game_image.png", class: "game-image", alt: "No image available" %>
-      <% end %>
-
+        <%= image_tag poster_url, class: "game-image", alt: "Image of #{item.title}" %>
       <p><strong>Platform:</strong> <%= item.platform %></p> 
     </div>
   <% end %>
