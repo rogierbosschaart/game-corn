@@ -23,7 +23,7 @@ photo = URI.parse("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm
 items = []
 users.each_with_index do |user, user_index|
   rand(3..7).times do |item_index| # Each user creates between 3 and 7 items
-    title = "Game Title #{user_index * 10 + item_index + 1}" # Unique title generation
+    title = "Game Title #{(user_index * 10) + (item_index + 1)}" # Unique title generation
     # Ensure title is unique across all items (though with this simple generation, it should be)
     # while Item.exists?(title: title) # This check is less necessary without Faker's randomness
     #   title = "Game Title #{rand(1000..9999)}"
