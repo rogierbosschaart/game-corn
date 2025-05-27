@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # Dashboard for current user
   get 'dashboard', to: 'users#dashboard', as: :dashboard
 
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items, only: [:show, :new, :create] do
     resources :offers, only: [:new, :create]
   end
 
