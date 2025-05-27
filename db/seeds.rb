@@ -42,7 +42,7 @@ users.each_with_index do |user, user_index|
       genre: genres.sample,
       description: "This is a sample description for #{title}. It's a great game!",
       user: user,
-      poster_url: "https://placehold.co/400x600/000000/FFFFFF?text=#{CGI.escape(title.split(' ').first)}" # Simple placeholder image
+      poster_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BN2I3NjZmN2YtNGQ0Yi00ZWUwLThlMGQtOWI4YmMxMTA1YTQyXkEyXkFqcGdeQXVyMTU0NTQxNTM4._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=e8a570f6770f796d729d6c50ff86563bc8b7318bc04f5b7e91152d73f5ac9e19" # Simple placeholder image
     )
     items << item
     puts "Created item: '#{item.title}' by #{user.username}"
