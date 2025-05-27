@@ -1,1 +1,27 @@
 <h1>Helloooooow Gamers</h1>
+
+<h2> Rented items </h2>
+
+
+<% @items.each do |item| %>
+  <div>
+    <%= item.title %>
+    <%= item.platform %>
+  </div>
+<% end %>
+
+<h2> My offers </h2>
+<% @offers_received.each do |offer| %>
+  <div>
+    <%= offer.item.title %>
+    <%= offer.item.platform %>
+  </div>
+<% end %>
+
+<h2> My? offers </h2>
+<% @offers_made.each do |offer| %>
+  <div>
+    <%= offer.item.title %>
+    <%= offer.item.platform %>
+  </div>
+<% end %>

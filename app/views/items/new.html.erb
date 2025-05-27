@@ -1,0 +1,9 @@
+<%= form_with model: @item do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :genre %>
+  <%= f.text_field :genre %>
+  <%= f.label :platform %>
+  <%= f.text_field :platform %>
+  <%= f.submit %>
+<% end %>
