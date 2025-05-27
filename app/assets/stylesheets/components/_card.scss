@@ -1,0 +1,36 @@
+.card {
+  width: 260px;
+  color: white;
+  background-color: black;
+  margin: 20px;
+  border-radius: 6px;;
+
+  .card-platform {
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+
+    p {
+      margin: 0;
+      padding: 12px 0px;
+      font-size: 14px;
+    }
+  }
+
+  image {
+    object-fit: cover;
+    height: 300px;
+    width: 100% ;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .card-title {
+      padding-left: 12px;
+
+      h2 {
+        font-size: 18px;
+        weight: 800;
+      }
+    }
+}
