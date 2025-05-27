@@ -33,4 +33,9 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def record_not_found
+    flash[:alert] = "The game you were looking for could not be found."
+    redirect_to items_path
+  end
 end
