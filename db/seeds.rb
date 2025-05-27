@@ -24,7 +24,7 @@ puts "#{users.count} users created!"
 
 puts "Creating items..."
 # Define some common platforms and genres for items
-platforms = ["PlayStation 5", "Xbox Series X", "Nintendo Switch", "PC", "PlayStation 4", "Xbox One"]
+platforms = ["PlayStation", "Xbox", "Nintendo", "PC", "Sega"]
 genres = ["Action", "Adventure", "RPG", "Strategy", "Sports", "Simulation", "Puzzle", "Horror"]
 
 items = []
