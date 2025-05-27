@@ -2,9 +2,11 @@
 
 <h2> Rented items </h2>
 
+<%= link_to "Add new item", new_item_path %>
 
 <% @items.each do |item| %>
-  <div>
+  <div class="card">
+    <%= image_tag item.poster_url, alt: "Placeholder", width: 350 %>
     <%= item.title %>
     <%= item.platform %>
   </div>
