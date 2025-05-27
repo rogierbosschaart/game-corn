@@ -5,7 +5,6 @@
   <% @items.each do |item| %>
     <div class="card">
       <h2><%= item.title %></h2>
-
         <%= image_tag poster_url, class: "game-image", alt: "Image of #{item.title}" %>
       <p><strong>Platform:</strong> <%= item.platform %></p> 
     </div>
