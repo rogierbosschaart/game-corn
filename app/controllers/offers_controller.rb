@@ -1,4 +1,6 @@
 class OffersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_item, only: [:new, :create]
   # before_action :set_offer, only: [:show, :edit, :update, :destroy]
 
   # def home
@@ -16,14 +18,14 @@ class OffersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @offer = Offer.new(offer_params)
+    @offer = @item.offers.new(offer_params)
     @offer.user = current_user
-    @offer.item = @item
+
     if @offer.save
-      redirect_to root, notice: 'Offer was successfully created.'
+      redirect_to item_path(@item), notice: 'Your offer request has been sent!' 
     else
-      render :new, alert: "There was a problem creating your offer."
+      flash.now[:alert] = "There was a problem creating your offer. Please check the form."
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -45,11 +47,15 @@ class OffersController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
     # def set_offer
     #     @offer = Offer.find(params[:id])
     # end
 
   def offer_params
-    params.require(:offer).permit(:comment)
+    params.require(:offer).permit(:comment, :start_date, :end_date)
   end
 end

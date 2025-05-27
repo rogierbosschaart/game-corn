@@ -1,41 +1,41 @@
-<h1>Create a New Offer</h1>
+<h1>Request to rent <%= @item.title %></h1>
 
-<p>This is the page for creating a new offer.</p>
+<% if @offer.errors.any? %>
+  <div style="color: red;">
+    <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+    <ul>
+      <% @offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<form action="#" method="post"> 
+<%= form_with(model: [@item, @offer]) do |form| %>
   <div>
-    <label for="start_date">Start Date:</label><br>
-    <input type="date" id="start_date" name="offer[start_date]">
+    <%= form.label :start_date, "Start Date:" %><br>
+    <%= form.date_field :start_date %>
   </div>
 
   <div>
-    <label for="end_date">End Date:</label><br>
-    <input type="date" id="end_date" name="offer[end_date]">
+    <%= form.label :end_date, "End Date:" %><br>
+    <%= form.date_field :end_date %>
   </div>
 
   <div>
-    <label for="comment">Your Message (optional):</label><br>
-    <textarea id="comment" name="offer[comment]" rows="5"></textarea>
+    <%= form.label :comment, "Your Message (optional):" %><br>
+    <%= form.text_area :comment, rows: 5 %>
   </div>
 
   <div>
-    <button type="submit">Send Rental Request</button>
+    <%= form.submit "Send Rental Request" %>
   </div>
-</form>
+<% end %>
 
----
+<hr>
 
-<h2>Navigation & Actions (for demonstration)</h2>
-<p>These links are static placeholders and don't perform real actions yet.</p>
+<h2>Play Games & Have a Fun </h2>
 
 <p>
-  <a href="#">Back to Previous Page</a>
-</p>
-
-<p>
-  <a href="#">Edit Offer (Placeholder)</a>
-</p>
-
-<p>
-  <a href="#">Delete Offer (Placeholder)</a>
+  <%= link_to "Back to #{@item.title} details", item_path(@item) %>
 </p>
