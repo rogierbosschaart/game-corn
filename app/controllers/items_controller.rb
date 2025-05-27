@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def new
@@ -28,7 +27,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :genre, :platform, :poster_url)
+    params.require(:item).permit(:title, :genre, :platform, :photo)
   end
 
   def set_item

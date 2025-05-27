@@ -1,14 +1,10 @@
 
 
-<%= form_with model: @item do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :poster_url %>
-  <%= f.text_field :poster_url %>
-  <%= f.label :genre %>
-  <%= f.text_field :genre %>
-  <%= f.label :platform %>
-  <%= f.text_field :platform %>
+<%= simple_form_for @item do |f| %>
+  <%= f.input :title %>
+  <%= f.input :photo, as: :file %>
+  <%= f.input :genre %>
+  <%= f.input :platform %>
   <%= f.submit %>
 <% end %>
 

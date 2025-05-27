@@ -6,7 +6,9 @@
 
 <% @items.each do |item| %>
   <div class="card">
-    <%= image_tag item.poster_url, alt: "Placeholder", width: 350 %>
+    <% if item.photo.key %>
+     <%= cl_image_tag  item.photo.key, height: 450, width: 300, crop: :fill %>
+    <% end %>
     <%= item.title %>
     <%= item.platform %>
   </div>
@@ -14,7 +16,10 @@
 
 <h2> My offers </h2>
 <% @offers_received.each do |offer| %>
-  <div>
+  <div class="card">
+    <% if offer.item.photo.key %>
+     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
+    <% end %>
     <%= offer.item.title %>
     <%= offer.item.platform %>
   </div>
@@ -22,7 +27,10 @@
 
 <h2> My? offers </h2>
 <% @offers_made.each do |offer| %>
-  <div>
+  <div class="card">
+    <% if offer.item.photo.key %>
+     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
+    <% end %>
     <%= offer.item.title %>
     <%= offer.item.platform %>
   </div>
