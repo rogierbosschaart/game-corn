@@ -1,8 +1,19 @@
-<h1><%= @item.title %></h1>
+<div class="container">
+  <%= link_to "back", root_path, class:"button-back" %>
+  <div class="item-container">
+    <div class="image-container">
+      <img src="<%= @item.poster_url %>" alt="Image of <%= @item.title %>">
+    </div>
+    <div class="description-container">
+      <div class="platform-container">
+        <p><%= @item.platform %></p>
+      </div>
+      <div class="text-container">
+        <h1><%= @item.title %></h1>
+        <p><strong>Genre:</strong> <%= @item.genre %></p>
+        <p><strong>Description:</strong> <%= @item.description %></p>
+      </div>
+    </div>
 
-<img src="<%= @item.poster_url %>" alt="Image of <%= @item.title %>">
-
-<p><strong>Genre:</strong> <%= @item.genre %></p>
-<p><strong>Description:</strong> <%= @item.description %></p>
-<p><strong>Platform:</strong> <%= @item.platform %></p>
-
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.item-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  margin: 20px auto;
+  width: 600px;
+
+  .image-container {
+    img {
+      width: 300px;
+      object-fit: cover;
+    }
+  }
+
+  .description-container {
+    display: flex;
+    flex-direction: column;
+
+    .platform-container {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background-color: red;
+      display: flex;
+      align-items: center;
+      padding-left: 24px;
+
+      p {
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+
+    .text-container {
+      flex-grow: 1;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      color: white;
+      background-color: black;
+    }
+  }
+}
