@@ -1,12 +1,29 @@
 <div class="container">
-  <h1>Video Game Collection</h1>
-  <p>Welcome to the video game collection page.</p>
 
-  <% @items.each do |item| %>
-    <div class="card">
-      <h2><%= item.title %></h2>
-        <%= image_tag item.poster_url, class: "game-image", alt: "Image of #{item.title}" %>
-      <p><strong>Platform:</strong> <%= item.platform %></p>
-    </div>
-  <% end %>
+  <div class="cards-section">
+
+    <% @items.each do |item| %>
+      <%= link_to item_path(item) do %>
+
+        <div class="card">
+
+          <div class="card-platform">
+            <p><%= item.platform %></p>
+          </div>
+
+          <%# <div class="card-image"> %>
+            <%= image_tag item.poster_url, class: "game-image", alt: "Image of #{item.title}" %>
+          <%# </div> %>
+
+          <div class="card-title">
+            <h2><%= item.title %></h2>
+          </div>
+
+        </div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+
 </div>

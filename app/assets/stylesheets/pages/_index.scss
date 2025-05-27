@@ -1,2 +1,8 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.cards-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 0 auto;
+}
