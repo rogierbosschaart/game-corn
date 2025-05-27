@@ -16,10 +16,9 @@ puts "#{users.count} users created!"
 
 puts "Creating items..."
 # Define some common platforms and genres for items
-platforms = ["PlayStation", "Xbox", "Nintendo", "PC", "Sega"]
-genres = ["Action", "Adventure", "RPG", "Strategy", "Sports", "Simulation", "Puzzle", "Horror"]
-
-
+platforms = %w[PC XBOX PlayStation Nintendo Sega]
+genres = %w[RPG Shooter Strategy Racing Slasher Horror Stealth Platformer Action]
+photo = URI.parse("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BN2I3NjZmN2YtNGQ0Yi00ZWUwLThlMGQtOWI4YmMxMTA1YTQyXkEyXkFqcGdeQXVyMTU0NTQxNTM4._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=e8a570f6770f796d729d6c50ff86563bc8b7318bc04f5b7e91152d73f5ac9e19").open
 
 items = []
 users.each_with_index do |user, user_index|
@@ -30,14 +29,15 @@ users.each_with_index do |user, user_index|
     #   title = "Game Title #{rand(1000..9999)}"
     # end
 
-    item = Item.create!(
+    item = Item.new(
       title: title,
       platform: platforms.sample,
       genre: genres.sample,
       description: "This is a sample description for #{title}. It's a great game!",
-      user: user,
-      poster_url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BN2I3NjZmN2YtNGQ0Yi00ZWUwLThlMGQtOWI4YmMxMTA1YTQyXkEyXkFqcGdeQXVyMTU0NTQxNTM4._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=e8a570f6770f796d729d6c50ff86563bc8b7318bc04f5b7e91152d73f5ac9e19" # Simple placeholder image
+      user: user
     )
+    item.photo.attach(io: photo, filename: "#{item.title}.jpg", content_type: "image/jpg" ) # Simple placeholder image
+    item.save
     items << item
     puts "Created item: '#{item.title}' by #{user.username}"
   end

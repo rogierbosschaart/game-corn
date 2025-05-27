@@ -10,5 +10,5 @@ class Item < ApplicationRecord
   validates :genre, inclusion: { in: GENRES }
 
   validates :title, :genre, :platform, presence: true
-  validates :title, uniqueness: { scope: :user, message: "you already add this game" }
+  validates :title, uniqueness: { scope: :user, message: "you already added this game" }
 end

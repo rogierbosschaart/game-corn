@@ -2,7 +2,8 @@
   <%= link_to "back", root_path, class:"button-back" %>
   <div class="item-container">
     <div class="image-container">
-      <img src="<%= @item.poster_url %>" alt="Image of <%= @item.title %>">
+       <%# Put the image back here %>
+       <%= cl_image_tag item.photo.key, height: 450, width: 300, crop: :fill %>
     </div>
     <div class="description-container">
       <div class="platform-container">
