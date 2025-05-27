@@ -1,0 +1,20 @@
+<div class="container">
+  <h1><%= @item.title %></h1>
+
+  <%# Отображаем изображение %>
+  <%# Если используете Active Storage: %>
+  <% if @item.image.attached? %>
+    <%= image_tag @item.image, alt: "Image of #{@item.title}" %>
+  <% else %>
+    <%= image_tag "placeholder_game_image.png", alt: "No image available" %>
+  <% end %>
+  <%# Если item.image - это просто URL (строка), используйте: %>
+  <%# <img src="<%= @item.image %>" alt="<%= @item.title %>"> %>
+
+  <p><strong>Description:</strong> <%= @item.description %></p>
+  <p><strong>Platform:</strong> <%= @item.platform %></p>
+  <p><strong>Price per day:</strong> $<%= '%.2f' % @item.price_per_day %></p>
+  <p><strong>Owner:</strong> <%= @item.user.email %></p> <%# Или @item.user.username, если у вас есть такое поле %>
+
+  <%= link_to "Back to all games", items_path %>
+</div>
