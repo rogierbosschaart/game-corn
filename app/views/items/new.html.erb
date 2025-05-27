@@ -3,8 +3,8 @@
 <%= simple_form_for @item do |f| %>
   <%= f.input :title %>
   <%= f.input :photo, as: :file %>
-  <%= f.input :genre %>
-  <%= f.input :platform %>
+  <%= f.input :genre, collection: Item::GENRES %>
+  <%= f.input :platform, collection: Item::PLATFORMS %>
   <%= f.submit %>
 <% end %>
 
