@@ -1,41 +1,61 @@
-<h1>Request to rent <%= @item.title %></h1>
+<div class="banner">
+  <h1><i class="fa-solid fa-gamepad"></i> GameCorn</h1>
+</div>
 
-<% if @offer.errors.any? %>
-  <div style="color: red;">
-    <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
-    <ul>
-      <% @offer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<div class="container mt-4">
 
-<%= form_with(model: [@item, @offer]) do |form| %>
-  <div>
-    <%= form.label :start_date, "Start Date:" %><br>
-    <%= form.date_field :start_date %>
+  <%= link_to "BACK", item_path(@item), class:"button-back" %>
+
+  <div class="text-center mb-4">
+    <h1>Play <%= @item.title %> & Have a Fun</h1>
   </div>
 
-  <div>
-    <%= form.label :end_date, "End Date:" %><br>
-    <%= form.date_field :end_date %>
+  <% if @offer.errors.any? %>
+    <div class="error-message-box">
+      <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+      <ul>
+        <% @offer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="outline-container">
+    <div class="item-container">
+      <div class="image-container">
+          <%= cl_image_tag @item.photo.key, height: 450, width: 300, crop: :fill, class: "game-image" %>
+      </div>
+
+      <div class="offer-form-column">
+        <h2><%= @item.title %></h2>
+        <%= form_with(model: [@item, @offer]) do |form| %>
+          <div>
+            <%= form.label :start_date, "Start Date:" %><br>
+            <%= form.date_field :start_date %>
+          </div>
+
+          <div>
+            <%= form.label :end_date, "End Date:" %><br>
+            <%= form.date_field :end_date %>
+          </div>
+
+          <div>
+            <%= form.label :comment, "Your Message (optional):" %><br>
+            <%= form.text_area :comment, rows: 5 %>
+          </div>
+
+          <div>
+            <%= form.submit "RENT GAME", class: "offer-button" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+  
   </div>
 
-  <div>
-    <%= form.label :comment, "Your Message (optional):" %><br>
-    <%= form.text_area :comment, rows: 5 %>
-  </div>
-
-  <div>
-    <%= form.submit "Send Rental Request" %>
-  </div>
-<% end %>
-
-<hr>
-
-<h2>Play Games & Have a Fun </h2>
-
-<p>
-  <%= link_to "Back to #{@item.title} details", item_path(@item) %>
-</p>
+  <hr>
+    <div class="text-center mb-4">
+        <h2>Your Quest for Fun Begins Here</h2>
+    </div>
+</div>
