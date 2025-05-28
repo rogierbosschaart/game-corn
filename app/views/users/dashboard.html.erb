@@ -46,7 +46,7 @@
               <span> <%= offer.start_date %> / <%= offer.end_date %></span>
             </div>
             <div class="offer-comment-buttons">
-              <p> <%= offer.comment %> </p>
+              <p> <%= offer.comment.truncate(35) %> </p>
               <div class="offer-buttons">
                 <i class="fa-solid fa-thumbs-up"></i>
                 <i class="fa-solid fa-thumbs-down"></i>
