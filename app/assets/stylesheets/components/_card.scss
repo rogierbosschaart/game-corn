@@ -31,10 +31,14 @@
   }
 
   .card-title {
+      display: flex;
+      align-items: center;
       padding-left: 12px;
+      margin: 8px 0px;
       h2 {
         font-size: 18px;
         font-weight: 800;
+
       }
     }
 }
