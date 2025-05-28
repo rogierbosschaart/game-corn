@@ -15,7 +15,11 @@
             <p><%= item.platform %></p>
           </div>
 
-          <%= cl_image_tag item.photo.key %>
+          <% if item.photo.attached? %>
+            <%= cl_image_tag item.photo.key %>
+          <% else %>
+            <div class="placeholder-image">No image available</div>
+          <% end %>
 
           <div class="card-title">
             <h2><%= item.title %></h2>
