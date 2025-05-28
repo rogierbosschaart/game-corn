@@ -36,16 +36,21 @@
         <h2> <%= @user.username %> </h2>
         <hr>
         <span>MY OFFERS</span>
-        <ul>
           <% @offers_received.each do |offer| %>
-          <li>
-            <%= offer.item.title %>
-            <%= offer.start_date %>
-            <%= offer.end_date %>
-          </li>
+          <div class="offer-received">
+            <div class="offer-header-dates">
+              <h2> <%= offer.item.title %> </h2>
+              <span> <%= offer.start_date %> / <%= offer.end_date %></span>
+            </div>
+            <div class="offer-comment-buttons">
+              <p> <%= offer.comment %> </p>
+              <div class="offer-buttons">
+                <i class="fa-solid fa-thumbs-up"></i>
+                <i class="fa-solid fa-thumbs-down"></i>
+              </div>
+            </div>
+          </div>
           <% end %>
-        </ul>
-        <hr>
         <span>MY BIDS</span>
         <ul>
           <% @offers_made.each do |offer| %>
