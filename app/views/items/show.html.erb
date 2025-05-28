@@ -3,51 +3,48 @@
     <h2>RENT  |  GAME  |  RETURN</h2>
 </div>
 
-<div class="grid-container">
-  <div class="grid-left">
-    <div class="item-info m-4">
-      <%= link_to "BACK", root_path, class:"button-back" %>
-      <div class="outline-container">
-        <div class="item-container">
-          <div class="image-container">
-            <% if @item.photo.attached? %>
-              <%= cl_image_tag @item.photo.key %>
-            <% else %>
-              <div class="placeholder-image">No image available</div>
-            <% end %>
-          </div>
-          <div class="description-container">
-            <div class="platform-container">
-              <p><%= @item.platform %></p>
+<div class="show-page">
+  <div class="grid-container">
+    <div class="grid-left">
+      <div class="item-info m-4">
+        <%= link_to "BACK", root_path, class:"button-back" %>
+        <div class="outline-container">
+          <div class="item-container">
+            <div class="image-container">
+              <% if @item.photo.attached? %>
+                <%= cl_image_tag @item.photo.key %>
+              <% else %>
+                <div class="placeholder-image">No image available</div>
+              <% end %>
             </div>
-            <div class="text-container">
-              <h2><%= @item.title %></h1>
-              <p><strong>Genre:</strong> <%= @item.genre %></p>
-              <p><strong>Description:</strong> <%= @item.description %></p>
-            </div>
-            <%= link_to new_item_offer_path(@item) do %>
-              <div class="offer-button">
-                <span>RENT GAME</span>
+            <div class="description-container">
+              <div class="platform-container">
+                <p><%= @item.platform %></p>
               </div>
-            <% end %>
+              <div class="text-container">
+                <h2><%= @item.title %></h1>
+                <p><strong>Genre:</strong> <%= @item.genre %></p>
+                <p><strong>Description:</strong> <%= @item.description %></p>
+              </div>
+              <%= link_to new_item_offer_path(@item) do %>
+                <div class="offer-button">
+                  <span>RENT GAME</span>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
+          </div>
       </div>
-        </div>
-    </div>
-  <div class="grid-right">
-    <div class="user-info m-4">
-      <span class="user-info-text">USER</span>
-      <h2> <%= @user.username %> </h2>
-      <hr style="border: 1px solid #E7E6F7">
-      <span>TOP GAMES FROM USER</span>
-      <ul>
-        <li>MarioKart</li>
-      </ul>
-      <div style="width: 100%; height: 600px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="grid-right">
+      <div class="user-info m-4">
+        <span class="user-info-text">USER</span>
+        <h2> <%= @user.username %> </h2>
+        <hr style="border: 1px solid #E7E6F7">
+        <span>TOP GAMES FROM USER</span>
+        <ul>
+          <li>MarioKart</li>
+        </ul>
       </div>
     </div>
   </div>
