@@ -25,8 +25,8 @@
           <%= link_to "Delete",
             item_path(item),
             data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-            
           %>
+          <%= link_to "Change item info", edit_item_path(item) %>
         </div>
 
       </div>
