@@ -1,10 +1,11 @@
-<h1>Helloooooow Gamers</h1>
+<div class="container-dashboard">
+    <h1 class="text-center mb-4">Helloooooow Gamers</h1>
 
-<h2> Rented items </h2>
+  <h2 class="text-center mb-4"> Rented Games </h2>
 
-<%= link_to "Add new item", new_item_path %>
+    <%= link_to "Add new item", new_item_path %>
 
-<div class="container">
+  <div class="container">
 
   <div class="cards-section">
 
@@ -32,26 +33,28 @@
       </div>
     <% end %>
   </div>
+  </div>
+
+  <h2> My offers </h2>
+  <% @offers_received.each do |offer| %>
+  <div class="card">
+    <% if offer.item.photo.key %>
+     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
+    <% end %>
+    <%= offer.item.title %>
+    <%= offer.item.platform %>
+  </div>
+  <% end %>
+
+  <h2> My? offers </h2>
+  <% @offers_made.each do |offer| %>
+    <div class="card">
+    <% if offer.item.photo.key %>
+     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
+    <% end %>
+    <%= offer.item.title %>
+    <%= offer.item.platform %>
+    </div>
+  <% end %>
+
 </div>
-
-<h2> My offers </h2>
-<% @offers_received.each do |offer| %>
-  <div class="card">
-    <% if offer.item.photo.key %>
-     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
-    <% end %>
-    <%= offer.item.title %>
-    <%= offer.item.platform %>
-  </div>
-<% end %>
-
-<h2> My? offers </h2>
-<% @offers_made.each do |offer| %>
-  <div class="card">
-    <% if offer.item.photo.key %>
-     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
-    <% end %>
-    <%= offer.item.title %>
-    <%= offer.item.platform %>
-  </div>
-<% end %>
