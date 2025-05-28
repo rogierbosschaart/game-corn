@@ -18,7 +18,7 @@ puts "Creating items..."
 # Define some common platforms and genres for items
 platforms = %w[PC XBOX PlayStation Nintendo Sega]
 genres = %w[RPG Shooter Strategy Racing Slasher Horror Stealth Platformer Action]
-file = URI.parse("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BN2I3NjZmN2YtNGQ0Yi00ZWUwLThlMGQtOWI4YmMxMTA1YTQyXkEyXkFqcGdeQXVyMTU0NTQxNTM4._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=e8a570f6770f796d729d6c50ff86563bc8b7318bc04f5b7e91152d73f5ac9e19").open
+# file = URI.parse("").open
 
 items = []
 users.each_with_index do |user, user_index|
@@ -36,12 +36,10 @@ users.each_with_index do |user, user_index|
       description: "This is a sample description for #{title}. It's a great game!",
       user: user
     )
-    begin
-      item.photo.attach(io: file, filename: "#{item.title}.jpg", content_type: "image/jpg")
-    rescue => e
-      puts "Failed to attach image for item #{item.id}: #{e.message}"
-    end
-    
+
+  §#   item.photo.attach(io: file, filename: "#{item.title}.jpg", content_type: "image/jpg")
+
+
  # Simple placeholder image
     item.save
     items << item
