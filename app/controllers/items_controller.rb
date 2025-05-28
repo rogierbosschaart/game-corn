@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(params[:item])
+    @item.update(item_params)
     redirect_to item_path(@item)
   end
 
