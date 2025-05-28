@@ -33,26 +33,12 @@
 
       <div class="offer-form-column">
         <h2><%= @item.title %></h2>
-        <%= form_with(model: [@item, @offer]) do |form| %>
-          <div>
-            <%= form.label :start_date, "Start Date:" %><br>
-            <%= form.date_field :start_date %>
-          </div>
-
-          <div>
-            <%= form.label :end_date, "End Date:" %><br>
-            <%= form.date_field :end_date %>
-          </div>
-
-          <div>
-            <%= form.label :comment, "Your Message (optional):" %><br>
-            <%= form.text_area :comment, rows: 5 %>
-          </div>
-
-          <div>
-            <%= form.submit "RENT GAME", class: "offer-button" %>
-          </div>
-        <% end %>
+        <%= simple_form_for [@item, @offer] do |f| %>
+  <%= f.input :start_date, label: "Start Date:" %>
+  <%= f.input :end_date, label: "End Date:" %>
+  <%= f.input :comment, label: "Your Message (optional):", input_html: { rows: 5 } %>
+  <%= f.button :submit, "Send Rental Request", class: "btn btn-primary w-100" %>
+<% end %>
     </div>
   </div>
 
