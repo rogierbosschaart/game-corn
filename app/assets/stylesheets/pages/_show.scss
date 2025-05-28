@@ -1,0 +1,8 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.grid-right {
+  border-left: 2px solid #E7E6F7;
+}

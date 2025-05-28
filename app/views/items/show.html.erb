@@ -2,29 +2,46 @@
   <h1><i class="fa-solid fa-gamepad"></i> GameCorn</h1>
 </div>
 
-<div class="container mt-4">
-  <%= link_to "BACK", root_path, class:"button-back" %>
-  <div class="outline-container">
-    <div class="item-container">
-      <div class="image-container">
-         <%# Put the image back here %>
-         <%= cl_image_tag @item.photo.key, height: 450, width: 300, crop: :fill %>
-      </div>
-      <div class="description-container">
-        <div class="platform-container">
-          <p><%= @item.platform %></p>
-        </div>
-        <div class="text-container">
-          <h2><%= @item.title %></h1>
-          <p><strong>Genre:</strong> <%= @item.genre %></p>
-          <p><strong>Description:</strong> <%= @item.description %></p>
-        </div>
-        <%= link_to new_item_offer_path(@item) do %>
-          <div class="offer-button">
-            <span>RENT GAME</span>
+<div class="grid-container">
+  <div class="grid-left">
+    <div class="item-info m-4">
+      <%= link_to "BACK", root_path, class:"button-back" %>
+      <div class="outline-container">
+        <div class="item-container">
+          <div class="image-container">
+            <% if @item.photo.attached? %>
+              <%= cl_image_tag @item.photo.key %>
+            <% else %>
+              <div class="placeholder-image">No image available</div>
+            <% end %>
           </div>
-        <% end %>
+          <div class="description-container">
+            <div class="platform-container">
+              <p><%= @item.platform %></p>
+            </div>
+            <div class="text-container">
+              <h2><%= @item.title %></h1>
+              <p><strong>Genre:</strong> <%= @item.genre %></p>
+              <p><strong>Description:</strong> <%= @item.description %></p>
+            </div>
+            <%= link_to new_item_offer_path(@item) do %>
+              <div class="offer-button">
+                <span>RENT GAME</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
+        </div>
+    </div>
+  <div class="grid-right">
+    <div class="user-info m-4">
+      <h2> <%= @user.username %> </h2>
+      <hr style="border: 1px solid #E7E6F7">
+      <h3>Top Games</h3>
+      <ul>
+        <li>MarioKart</li>
+      </ul>
     </div>
   </div>
 </div>

@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @user = User.find(@item.user_id)
   end
 
   def new
