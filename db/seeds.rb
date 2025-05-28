@@ -37,13 +37,13 @@ users.each_with_index do |user, user_index|
       user: user
     )
 
-  §#   item.photo.attach(io: file, filename: "#{item.title}.jpg", content_type: "image/jpg")
+  #   item.photo.attach(io: file, filename: "#{item.title}.jpg", content_type: "image/jpg")
 
 
- # Simple placeholder image
-    item.save
-    items << item
-    puts "Created item: '#{item.title}' by #{user.username}"
+  # Simple placeholder image
+      item.save
+      items << item
+      puts "Created item: '#{item.title}' by #{user.username}"
   end
 end
 puts "#{items.count} items created!"
