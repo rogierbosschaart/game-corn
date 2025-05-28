@@ -8,7 +8,10 @@
         <% @items.each do |item| %>
         <div class="card">
           <div class="card-platform">
-            <p><%= item.platform %></p>
+            <p>
+              <i class="<%= platform_icon(item.platform) %>"></i>
+              <%= item.platform %>
+            </p>
           </div>
 
           <%# Put the image back here %>
