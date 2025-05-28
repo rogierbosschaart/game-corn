@@ -19,7 +19,10 @@
             </div>
             <div class="description-container">
               <div class="platform-container">
-                <p><%= @item.platform %></p>
+                <p>
+                  <i class="<%= platform_icon(@item.platform) %>"></i>
+                  <%= @item.platform %>
+                </p>
               </div>
               <div class="text-container">
                 <h2><%= @item.title %></h1>

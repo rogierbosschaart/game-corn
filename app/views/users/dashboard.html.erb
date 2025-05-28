@@ -1,7 +1,7 @@
 <div class="dashboard-page">
   <div class="grid-container">
 
-    <div class="grid-left m-4">
+    <div class="grid-left m-4" id="grid-left-dashboard">
       <%= link_to "Add new item", new_item_path %>
       <h2 class="text-center">MY ITEMS</h2>
       <div class="cards-section">
@@ -32,7 +32,7 @@
 
     <div class="grid-right" id="grid-right-dashboard">
       <div class="m-4">
-        <span>USERNAME:</span>
+        <span>USERNAME</span>
         <h2> <%= @user.username %> </h2>
         <hr>
         <span>MY OFFERS</span>

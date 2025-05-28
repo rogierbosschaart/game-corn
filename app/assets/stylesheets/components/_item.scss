@@ -1,5 +1,5 @@
 .outline-container {
-  border: 0.2px solid rgba(200,200,200,0.2);
+  border: 0.2px solid rgba(200,200,200,2.2);
   border-radius: 6px;
   width: 600px;
   margin: 20px auto;
@@ -36,8 +36,6 @@
         align-items: center;
         color: #E7E6F7;
         background-color: rgb(192, 1, 1);
-        display: flex;
-        align-items: center;
         padding-left: 24px;
         // border-top-right-radius: 6px;
 
@@ -53,7 +51,7 @@
         flex-direction: column;
         justify-content: center;
         padding: 24px;
-        color: white;
+        color: #E7E6F7;
         background-color: black;
       }
       .offer-button {
