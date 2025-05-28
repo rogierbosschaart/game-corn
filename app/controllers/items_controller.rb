@@ -8,6 +8,13 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find(@item.user_id)
+
+    # @markers = @user.geocoded.map do |user|
+    #   {
+    #     lat: user.latitude,
+    #     lng: user.longitude
+    #   }
+    # end
   end
 
   def new
@@ -38,7 +45,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
-    redirect_to item_path(@item)
+    redirect_to dashboard_path
   end
 
   private

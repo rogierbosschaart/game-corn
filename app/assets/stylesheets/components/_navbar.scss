@@ -1,7 +1,13 @@
 .navbar-lewagon {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background: #0A070E;
   color: #E7E6F7;
+  border-bottom: 2px solid #E7E6F7;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -16,4 +22,8 @@
   font-size: 48px;
   color: rgb(192, 1, 1);
   margin-left: 14px 7px;
+}
+
+.navbar-icon {
+  text-shadow: 0 0 1px #bdbcc9;
 }
