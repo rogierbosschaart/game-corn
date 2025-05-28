@@ -56,6 +56,7 @@ gem "sassc-rails"
 gem "cloudinary"
 gem 'activestorage-cloudinary-service'
 gem 'dotenv-rails', groups: [:development, :test]
+gem "geocoder"
 
 
 group :development, :test do
