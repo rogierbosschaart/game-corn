@@ -83,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: game_corn_production
-  username: game_corn
-  password: <%= ENV["GAME_CORN_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
