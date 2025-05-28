@@ -8,6 +8,13 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find(@item.user_id)
+
+    # @markers = @user.geocoded.map do |user|
+    #   {
+    #     lat: user.latitude,
+    #     lng: user.longitude
+    #   }
+    # end
   end
 
   def new
