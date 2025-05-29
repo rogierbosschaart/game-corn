@@ -1,0 +1,22 @@
+<%# app/views/items/_form.html.erb %>
+
+<%= simple_form_for item do |f| %> <%# Обратите внимание: здесь 'item' вместо '@item' %>
+  <%# Проверка на ошибки. Simple Form хорошо интегрируется с ними. %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :photo, as: :file %> <%# Для загрузки файла (Active Storage) %>
+    <%= f.input :description %>
+    <%= f.input :genre, collection: Item::GENRES %>
+    <%= f.input :platform, collection: Item::PLATFORMS %>
+  </div>
+
+  <div class="form-actions mt-4">
+    <%= f.submit "Add Game", class: "btn btn-primary btn-lg" %> <%# Кнопка Submit с классами Bootstrap %>
+  </div>
+<% end %>
+
+<%# Кнопка "BACK" не нужна внутри всплывающей формы, так как ее закрывают через кнопку "Close" или крестик %>
+<%# Она останется на самой странице дэшборда, вне модального окна %>

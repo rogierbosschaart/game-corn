@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @items = Item.all
@@ -26,32 +27,36 @@ class ItemsController < ApplicationController
     @user = current_user
     @item.user_id = @user.id
     if @item.save
-      redirect_to dashboard_path
+      redirect_to dashboard_path, notice: 'Game was successfully added to your listings!'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to dashboard_path, alert: @item.errors.full_messages.to_sentence
+      #render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
-    redirect_to items_path, status: :see_other
+    redirect_to dashboard_path, status: :see_other, notice: 'Game was successfully removed from your listings.'
+    #redirect_to items_path, status: :see_other
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to dashboard_path
+    if @item.update(item_params)
+      #redirect_to dashboard_path
+      redirect_to dashboard_path, notice: 'Game details were successfully updated!'
+    else
+      flash.now[:alert] = "There was a problem updating game details."
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:title, :genre, :platform, :photo)
+    params.require(:item).permit(:title, :genre, :platform, :photo, :description)
   end
 
   def set_item
