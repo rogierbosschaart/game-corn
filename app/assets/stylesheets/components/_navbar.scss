@@ -35,3 +35,19 @@
 // .navbar-link:hover {
 //   color: #bdbcc9 !important;
 // }
+
+.navbar-brand {
+  color: #E7E6F7;
+  display: flex;
+  align-items: center;
+
+  h2 {
+    font-weight: 800;
+    margin-left: 12px;
+    margin-bottom: 0;
+  }
+}
+
+.navbar-brand:hover {
+  color: #c8c7d4;
+}
