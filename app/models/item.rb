@@ -11,4 +11,11 @@ class Item < ApplicationRecord
 
   validates :title, :genre, :platform, presence: true
   validates :title, uniqueness: { scope: :user, message: "you already added this game" }
+
+  include PgSearch::Model
+  pg_search_scope :search_by_params,
+  against: [ :title, :platform, :genre, :description ],
+  using: {
+    tsearch: { prefix: true }
+  }
 end
