@@ -28,6 +28,8 @@ gem "jbuilder"
 
 gem "devise"
 
+gem "pg_search"
+
 gem "cloudinary"
 
 # Use Redis adapter to run Action Cable in production
