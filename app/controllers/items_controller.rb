@@ -41,6 +41,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.turbo_stream do 
+        render turbo_stream: turbo_stream.update("edit_item_form_#{@item.id}", partial: "items/form", locals: { item: @item })
+      end
+    end
   end
 
   def update
@@ -48,8 +54,14 @@ class ItemsController < ApplicationController
       #redirect_to dashboard_path
       redirect_to dashboard_path, notice: 'Game details were successfully updated!'
     else
-      flash.now[:alert] = "There was a problem updating game details."
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { flash.now[:alert] = "There was a problem updating game details."; render :edit, status: :unprocessable_processable_entity }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update("edit_item_form_#{@item.id}", partial: "items/form", locals: { item: @item }), status: :unprocessable_entity
+        end
+      end
+      # flash.now[:alert] = "There was a problem updating game details."
+      # render :edit, status: :unprocessable_entity
     end
   end
 
