@@ -7,10 +7,22 @@ puts "Database cleaned!"
 puts "Creating users..."
 # Create 5 sample users
 users = []
-users << User.create!(username: "Tymur", city: "Amersfoort", email: "tymur@mahorka.com", password: "123456")
-users << User.create!(username: "Kazybek", city: "Amsterdan", email: "kazybek@dam.com", password: "123456")
-users << User.create!(username: "Rogier", city: "Amsterdan", email: "rogier@amster.com", password: "123456")
-puts "#{users.count} users created!"
+# Create Tymur with photo
+tymur = User.create!(username: "Tymur", city: "Amersfoort", email: "tymur@mahorka.com", password: "123456")
+tymur_image_path = Rails.root.join("app/assets/images/Tymur.jpeg")
+tymur.photo.attach(io: File.open(tymur_image_path), filename: "Tymur.jpeg", content_type: "image/jpeg")
+users << tymur
+# Create Kazybek with photo
+kazybek = User.create!(username: "Kazybek", city: "Amsterdan", email: "kazybek@dam.com", password: "123456")
+kazybek_image_path = Rails.root.join("app/assets/images/Kazybek.jpg")
+kazybek.photo.attach(io: File.open(kazybek_image_path), filename: "Kazybek.jpg", content_type: "image/jpeg")
+users << kazybek
+# Create Rogier with photo
+rogier = User.create!(username: "Rogier", city: "Amsterdan", email: "rogier@amster.com", password: "123456")
+rogier_image_path = Rails.root.join("app/assets/images/Rogier.jpeg")
+rogier.photo.attach(io: File.open(rogier_image_path), filename: "Rogier.jpeg", content_type: "image/jpeg")
+users << rogier
+puts "#{users.count} users created with profile photos!"
 puts "Creating items..."
 # Game data with specific images
 game_data = [
