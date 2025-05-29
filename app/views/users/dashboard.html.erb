@@ -65,7 +65,19 @@
             <div class="offer-comment-buttons">
               <p> <%= offer.comment.truncate(35) %> </p>
               <div class="offer-buttons">
-                <i class="fa-solid fa-thumbs-up"></i>
+
+                <%= link_to offer_path(offer, accepted: true),
+                    data: { turbo_method: :patch } do %>
+                  <i class="fa-solid fa-thumbs-up
+                    <%= offer.accepted == true ? 'icon-green' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
+                <% end %>
+
+                <%= link_to offer_path(offer, accepted: false),
+                    data: { turbo_method: :patch } do %>
+                  <i class="fa-solid fa-thumbs-down
+                  <%= offer.accepted == false ? 'icon-red' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
+                <% end %>
+
                 <%= link_to offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
                   <i class="fa-regular fa-trash-can"></i>
                 <% end %>
