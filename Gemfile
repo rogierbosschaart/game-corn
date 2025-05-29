@@ -57,7 +57,7 @@ gem "cloudinary"
 gem 'activestorage-cloudinary-service'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "geocoder"
-
+gem "importmap-rails"
 
 group :development, :test do
   gem "dotenv-rails"

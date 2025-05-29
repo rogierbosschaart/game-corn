@@ -48,6 +48,11 @@
         <ul>
           <li>MarioKart</li>
         </ul>
+        <div style="width: 80%; height: 200px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
     </div>
   </div>
