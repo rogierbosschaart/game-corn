@@ -3,23 +3,24 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <i class="fa-solid fa-gamepad fa-rotate-by navbar-icon" style="--fa-rotate-angle: -35deg;"></i>
     <% end %>
-
-    
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-
         <% if user_signed_in? %>
           <li class="nav-item d-flex align-items-center px-4">
             <span> Welcome <%= current_user.username %></span>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar-large" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+            <% if current_user.photo.attached? %>
+              <%= cl_image_tag current_user.photo.key, class: "avatar", alt: "dropdown menu" %>
+            <% else %>
+              <div class="avatar d-flex justify-content-center align-items-center bg-primary text-white" style="width: 40px; height: 40px; border-radius: 50%;">
+                <%= current_user.username.first(2).upcase %>
+              </div>
+            <% end %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Dashboard", dashboard_path, class: "dropdown-item" %>
