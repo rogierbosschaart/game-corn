@@ -3,7 +3,7 @@ module ItemsHelper
     {
       "PC" => "fa-solid fa-desktop",
       "XBOX" => "fa-brands fa-xbox",
-      "Playstation" => "fa-brands fa-playstation",
+      "PlayStation" => "fa-brands fa-playstation",
       "Nintendo" => "fa-solid fa-gamepad",
       "Sega" => "fa-solid fa-gamepad"
     }[platform]
