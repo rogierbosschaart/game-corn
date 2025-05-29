@@ -2,8 +2,24 @@
   <div class="grid-container">
 
     <div class="grid-left m-4" id="grid-left-dashboard">
-      <%= link_to "Add new item", new_item_path %>
-      <h2 class="text-center">MY ITEMS</h2>
+      <button type="button" class="btn btn-primary btn-lg mb-4" data-bs-toggle="modal" data-bs-target="#addItemModal"> 
+        <i class=="fa-solid fa-plus me-2"></i> Add New Game
+        </button> 
+
+        <% if flash[:alert] %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= flash[:alert] %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= flash[:notice] %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+
+      <h2 class="text-center">MY GAMES</h2>
       <div class="cards-section">
         <% @items.each do |item| %>
         <div class="card">
@@ -64,6 +80,26 @@
             </li>
           <% end %>
         </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg"> <%# modal-lg для большей ширины, modal-dialog-centered для центрирования по вертикали %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addItemModalLabel">Добавить новую игру в вашу коллекцию</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%# Рендерим наш частичный шаблон формы _form.html.erb %>
+        <%# 'item: @item || Item.new' передает либо существующий @item (если он пришел с ошибками после неудачной отправки), либо новый пустой Item %>
+        <%= render 'items/form', item: @item || Item.new %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <%# Кнопка "Отправить" находится внутри формы, поэтому здесь она не нужна %>
       </div>
     </div>
   </div>
