@@ -4,8 +4,15 @@
   color: #E7E6F7;
   background-image: linear-gradient(rgba(20,20,20,1.0), rgba(0,0,0,1));
   margin: 20px 10px;
-  border: 1px solid #bdbcc9;
-  border-radius: 6px;
+  // border: 1px solid #bdbcc9;
+  border: none;
+  // border-radius: 6px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 
   .card-platform {
     display: flex;
@@ -45,4 +52,9 @@
 
       }
     }
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
