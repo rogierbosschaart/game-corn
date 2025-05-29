@@ -60,17 +60,19 @@
         <% if @user.items.excluding(@item).any? %>
           <div class="user-other-games-list">
             <% @user.items.excluding(@item).each do |other_item| %>
+            <%= link_to item_path(other_item), class: "text-decoration-none text-white" do %>
               <div class="other-game-card mb-2 d-flex align-items-center">
                   <% if other_item.photo.attached? %>
-                    <%= cl_image_tag other_item.photo.key, height: 50, width: 50, crop: :fill, class: "rounded-circle border border-white border-2 me-2" %>
+                    <%= cl_image_tag other_item.photo.key, height: 50, width: 50, crop: :fill, class: "rounded border border-white border-2 me-2" %>
                   <% else %>
-                    <%= image_tag "placeholder_game.jpg", height: 50, width: 50, crop: :fill, class: "rounded-circle border-white border-2 me-2" %>
+                    <%= image_tag "placeholder_game.jpg", height: 50, width: 50, crop: :fill, class: "rounded border-white border-2 me-2" %>
                   <% end %>
                  <div class="d-flex justify-content-between align-items-center w-100">
                    <p class = "fw-bold m-0"> <%= other_item.title  %> </p> 
                    <i class="<%= platform_icon(other_item.platform) %>"></i>
                  </div>
               </div>
+              <% end %>
             <% end %>
           </div>
         <% else %>
