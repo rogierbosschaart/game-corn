@@ -4,10 +4,10 @@ class ItemsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @items = Item.all
+    @items = Item.all.order(created_at: :desc)
 
     if params[:query].present?
-      @items = Item.search_by_params(params[:query])
+      @items = Item.search_by_params(params[:query]).order(created_at: :desc)
     end
   end
 
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
   def edit
     respond_to do |format|
       format.html # edit.html.erb
-      format.turbo_stream do 
+      format.turbo_stream do
         render turbo_stream: turbo_stream.update("edit_item_form_#{@item.id}", partial: "items/form", locals: { item: @item })
       end
     end

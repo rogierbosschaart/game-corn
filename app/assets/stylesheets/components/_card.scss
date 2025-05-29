@@ -12,6 +12,9 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: visible;
+
 
   .card-platform {
     display: flex;
@@ -45,6 +48,7 @@
       align-items: center;
       padding-left: 12px;
       margin: 8px 0px;
+
       h2 {
         font-size: 18px;
         font-weight: 800;
