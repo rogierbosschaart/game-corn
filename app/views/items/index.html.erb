@@ -1,5 +1,6 @@
 <div class="banner">
-  <h1><i class="fa-solid fa-gamepad"></i> GameCorn</h1>
+  <h1><i class="fa-solid fa-gamepad"></i> GameCorn <i class="fa-solid fa-gamepad"></i></h1>
+  <h2>RENT  |  GAME  |  RETURN</h2>
 </div>
 
 <div class="container mt-4">
@@ -12,7 +13,10 @@
         <div class="card">
 
           <div class="card-platform">
-            <p><%= item.platform %></p>
+            <p>
+              <i class="<%= platform_icon(item.platform) %>"></i>
+              <%= item.platform %>
+            </p>
           </div>
 
           <% if item.photo.attached? %>

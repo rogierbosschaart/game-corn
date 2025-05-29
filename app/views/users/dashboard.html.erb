@@ -1,57 +1,70 @@
-<h1>Helloooooow Gamers</h1>
+<div class="dashboard-page">
+  <div class="grid-container">
 
-<h2> Rented items </h2>
+    <div class="grid-left m-4" id="grid-left-dashboard">
+      <%= link_to "Add new item", new_item_path %>
+      <h2 class="text-center">MY ITEMS</h2>
+      <div class="cards-section">
+        <% @items.each do |item| %>
+        <div class="card">
+          <div class="card-platform">
+            <p>
+              <i class="<%= platform_icon(item.platform) %>"></i>
+              <%= item.platform %>
+            </p>
+          </div>
 
-<%= link_to "Add new item", new_item_path %>
+          <%# Put the image back here %>
+          <% if item.photo.key %>
+            <%= cl_image_tag item.photo.key, height: 450, width: 300, crop: :fill %>
+          <% end %>
 
-<div class="container">
+          <div class="card-title">
+            <h2><%= item.title %></h2>
+            <%= link_to "Delete",
+              item_path(item),
+              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+            %>
+            <%= link_to "Change item info", edit_item_path(item) %>
+          </div>
 
-  <div class="cards-section">
-
-    <% @items.each do |item| %>
-
-      <div class="card">
-        <div class="card-platform">
-          <p><%= item.platform %></p>
         </div>
-
-        <%# Put the image back here %>
-        <% if item.photo.key %>
-         <%= cl_image_tag item.photo.key, height: 450, width: 300, crop: :fill %>
-        <% end %>
-
-        <div class="card-title">
-          <h2><%= item.title %></h2>
-          <%= link_to "Delete",
-            item_path(item),
-            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-          %>
-          <%= link_to "Change item info", edit_item_path(item) %>
-        </div>
-
+      <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <div class="grid-right" id="grid-right-dashboard">
+      <div class="m-4">
+        <span>USERNAME</span>
+        <h2> <%= @user.username %> </h2>
+        <hr>
+        <span>MY OFFERS</span>
+          <% @offers_received.each do |offer| %>
+          <div class="offer-received">
+            <div class="offer-header-dates">
+              <h2> <%= offer.item.title %> </h2>
+              <span> <%= offer.start_date %> / <%= offer.end_date %></span>
+            </div>
+            <div class="offer-comment-buttons">
+              <p> <%= offer.comment.truncate(35) %> </p>
+              <div class="offer-buttons">
+                <i class="fa-solid fa-thumbs-up"></i>
+                <i class="fa-solid fa-thumbs-down"></i>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <span>MY BIDS</span>
+        <ul>
+          <% @offers_made.each do |offer| %>
+            <li>
+              <%= offer.item.title %>
+              <%= offer.start_date %>
+              <%= offer.end_date %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-
-<h2> My offers </h2>
-<% @offers_received.each do |offer| %>
-  <div class="card">
-    <% if offer.item.photo.key %>
-     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
-    <% end %>
-    <%= offer.item.title %>
-    <%= offer.item.platform %>
-  </div>
-<% end %>
-
-<h2> My? offers </h2>
-<% @offers_made.each do |offer| %>
-  <div class="card">
-    <% if offer.item.photo.key %>
-     <%= cl_image_tag  offer.item.photo.key, height: 450, width: 300, crop: :fill %>
-    <% end %>
-    <%= offer.item.title %>
-    <%= offer.item.platform %>
-  </div>
-<% end %>

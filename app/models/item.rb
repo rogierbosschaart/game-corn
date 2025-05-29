@@ -4,7 +4,9 @@ class Item < ApplicationRecord
   has_one_attached :photo
 
   PLATFORMS = %w[PC XBOX PlayStation Nintendo Sega]
-  GENRES = %w[RPG Shooter Strategy Racing Slasher Horror Stealth Platformer Action Sport Fighting]
+
+  GENRES = %w[Action Adventure Fighting Horror Platformer Shooter Slasher Sport Strategy Racing RPG]
+
 
   validates :platform, inclusion: { in: PLATFORMS }
   validates :genre, inclusion: { in: GENRES }
