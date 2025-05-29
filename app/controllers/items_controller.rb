@@ -5,17 +5,18 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+
+    if params[:query].present?
+      @items = Item.search_by_params(params[:query])
+    end
   end
 
   def show
     @user = User.find(@item.user_id)
-
-    # @markers = @user.geocoded.map do |user|
-    #   {
-    #     lat: user.latitude,
-    #     lng: user.longitude
-    #   }
-    # end
+    @markers = [ {
+        lat: @item.latitude,
+        lng: @item.longitude
+      }] if @item.geocoded?
   end
 
   def new
@@ -68,7 +69,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :genre, :platform, :photo, :description)
+    params.require(:item).permit(:title, :genre, :platform, :photo, :address, :description)
   end
 
   def set_item
