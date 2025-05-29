@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find(@item.user_id)
+    @user = @item.user
     @markers = [ {
         lat: @item.latitude,
         lng: @item.longitude
