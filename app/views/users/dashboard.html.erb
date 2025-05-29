@@ -2,11 +2,9 @@
   <div class="grid-container">
 
     <div class="grid-left m-4" id="grid-left-dashboard">
-      <button type="button" class="btn btn-primary btn-lg mb-4" data-bs-toggle="modal" data-bs-target="#addItemModal">
-        <i class="fa-solid fa-plus me-2"></i> Add New Game
-        </button>
 
-        <% if flash[:alert] %>
+
+      <% if flash[:alert] %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <%= flash[:alert] %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -19,10 +17,16 @@
         </div>
       <% end %>
 
-      <h2 class="text-center">MY GAMES</h2>
+      <div class="header d-flex justify-content-between my-2 mx-3">
+        <h2 class="text-center">MY GAMES</h2>
+        <button type="button" class="button-add" data-bs-toggle="modal" data-bs-target="#addItemModal">
+          <span><i class="fa-solid fa-plus me-2"></i>ADD GAME</span>
+        </button>
+      </div>
+
       <div class="cards-section">
         <% @items.each do |item| %>
-          <div class="card card-clickable"
+          <div class="card"
                 role="button"
                 data-bs-toggle="modal"
                 data-bs-target="#editItemModal-<%= item.id %>">
@@ -38,11 +42,12 @@
 
             <div class="card-title">
               <h2><%= item.title %></h2>
-              <%= link_to "Delete",
-                item_path(item),
-                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-                class: "btn btn-danger btn-sm me-2"
-              %>
+              <%= link_to item_path(item),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "card-button",
+                id: "delete-button" do %>
+                  <i class="fa-solid fa-xmark"></i>
+              <% end %>
             </div>
           </div>
         <% end %>
