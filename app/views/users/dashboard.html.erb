@@ -2,9 +2,9 @@
   <div class="grid-container">
 
     <div class="grid-left m-4" id="grid-left-dashboard">
-      <button type="button" class="btn btn-primary btn-lg mb-4" data-bs-toggle="modal" data-bs-target="#addItemModal"> 
-        <i class=="fa-solid fa-plus me-2"></i> Add New Game
-        </button> 
+      <button type="button" class="btn btn-primary btn-lg mb-4" data-bs-toggle="modal" data-bs-target="#addItemModal">
+        <i class="fa-solid fa-plus me-2"></i> Add New Game
+        </button>
 
         <% if flash[:alert] %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -54,23 +54,26 @@
         <span>USERNAME</span>
         <h2> <%= @user.username %> </h2>
         <hr>
-        <span>MY OFFERS</span>
+        <span>RECEIVED</span>
+        <hr>
           <% @offers_received.each do |offer| %>
           <div class="offer-received">
             <div class="offer-header-dates">
-              <h2> <%= offer.item.title %> </h2>
+              <h2> <%= offer.item.title.truncate(20) %> </h2>
               <span> <%= offer.start_date %> / <%= offer.end_date %></span>
             </div>
             <div class="offer-comment-buttons">
               <p> <%= offer.comment.truncate(35) %> </p>
               <div class="offer-buttons">
                 <i class="fa-solid fa-thumbs-up"></i>
-                <i class="fa-solid fa-thumbs-down"></i>
+                <%= link_to offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
               </div>
             </div>
           </div>
           <% end %>
-        <span>MY BIDS</span>
+        <span>SENT</span>
         <ul>
           <% @offers_made.each do |offer| %>
             <li>

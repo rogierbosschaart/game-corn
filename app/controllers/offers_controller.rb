@@ -22,7 +22,7 @@ class OffersController < ApplicationController
     @offer.user = current_user
 
     if @offer.save
-      redirect_to item_path(@item), notice: 'Your offer request has been sent!' 
+      redirect_to item_path(@item), notice: 'Your offer request has been sent!'
     else
       flash.now[:alert] = "There was a problem creating your offer. Please check the form."
       render :new, status: :unprocessable_entity
@@ -40,10 +40,11 @@ class OffersController < ApplicationController
     #     end
     # end
 
-    # def destroy
-    #     @offer.destroy
-    #     redirect_to offers_url, notice: 'Offer was successfully destroyed.'
-    # end
+    def destroy
+      @offer = Offer.find(params[:id])
+      @offer.destroy
+      redirect_to dashboard_path, notice: 'Offer was successfully destroyed.'
+    end
 
   private
 

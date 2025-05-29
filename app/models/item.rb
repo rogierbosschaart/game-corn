@@ -17,7 +17,7 @@ class Item < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_params,
-  against: [ :title, :platform, :genre, :description ],
+  against: [ :title, :platform, :genre, :description, :address ],
   using: {
     tsearch: { prefix: true }
   }
