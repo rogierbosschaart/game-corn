@@ -1,6 +1,12 @@
 <div>
-  <%= simple_form_for rating do |f| %>
-    <%= f.input :value, as: :radio_buttons, collection: 1..5, required: true %>
-    <%= f.submit "Save rating", class: "btn btn-primary btn-lg" %>
+  <%= simple_form_for(@rating, url: @rating.persisted? ? item_rating_path(@item, @rating) : item_ratings_path(@item), method: @rating.persisted? ? :patch : :post) do |f| %>
+    <div class="star-rating">
+      <% 1.upto(5) do |i| %>
+        <%= f.radio_button :value, i, id: "star#{i}", class: 'star-input', checked: (@rating_value == i) %>
+        <label for="star#{i}" class="star-label">★</label>
+      <% end %>
+    </div>
+
+    <%= f.submit @rating.persisted? ? "Update Rating" : "Save Rating", class: "btn btn-primary mt-2" %>
   <% end %>
 </div>
