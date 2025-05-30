@@ -1,0 +1,23 @@
+.star-rating {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.star-input {
+  display: none;
+}
+
+.star-label {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+
+.star-input:checked ~ .star-label,
+.star-label:hover,
+.star-label:hover ~ .star-label {
+  color: gold;
+}
+

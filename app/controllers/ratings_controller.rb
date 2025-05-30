@@ -4,15 +4,16 @@ class RatingsController < ApplicationController
     @item = Item.find(params[:item_id])
     @rating = Rating.new
   end
+
   def create
     @item = Item.find(params[:item_id])
     @rating = @item.ratings.new(rating_params)
     @rating.user = current_user
 
     if @rating.save
-      redirect_to @item
+      redirect_to @item, notice: "Rating saved"
     else
-      redirect_to @item, alert: "Error"
+      redirect_to @item, alert: "Could not save rating"
     end
   end
 
