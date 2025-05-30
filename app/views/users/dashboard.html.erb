@@ -1,8 +1,8 @@
 <div class="dashboard-page">
   <div class="grid-container">
 
+    <%# GRID LEFT %>
     <div class="grid-left m-4" id="grid-left-dashboard">
-
 
       <% if flash[:alert] %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -54,10 +54,13 @@
       </div>
     </div>
 
+    <%# GRID RIGHT %>
     <div class="grid-right" id="grid-right-dashboard">
       <div class="m-4">
-        <span>USERNAME</span>
+        <%# <span>USERNAME</span>
         <h2> <%= @user.username %> </h2>
+        <h2>OFFERS</h2>
+
         <hr>
         <span>RECEIVED</span>
         <hr>
@@ -89,17 +92,18 @@
               </div>
             </div>
           </div>
-          <% end %>
+        <% end %>
+
+        <hr>
         <span>SENT</span>
-        <ul>
+        <hr>
           <% @offers_made.each do |offer| %>
-            <li>
-              <%= offer.item.title %>
-              <%= offer.start_date %>
-              <%= offer.end_date %>
-            </li>
+            <div class="offer-header-dates">
+              <h2><%= offer.item.title %></h2>
+              <span><%= offer.start_date %> / <%= offer.end_date %></span>
+            </div>
           <% end %>
-        </ul>
+
       </div>
     </div>
   </div>
