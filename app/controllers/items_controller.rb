@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @user = User.find(@item.user_id.order(created_at: :desc))
+    @user = User.find(@item.user_id)
     @actual_rating = Rating.find_by(user: current_user, item: @item)
     @rating = @actual_rating || @item.ratings.new
     @other_ratings = @item.ratings.includes(:user).where.not(comment: [nil, ""])
