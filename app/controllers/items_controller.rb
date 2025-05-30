@@ -4,16 +4,16 @@ class ItemsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @items = Item.all.order(created_at: :asc)
+    @items = Item.all.order(created_at: :desc)
     @rating = Rating.new
     if params[:query].present?
-      @items = Item.search_by_params(params[:query]).order(created_at: :asc)
+      @items = Item.search_by_params(params[:query]).order(created_at: :desc)
     end
   end
 
   def show
     @item = Item.find(params[:id])
-    @user = User.find(@item.user_id)
+    @user = User.find(@item.user_id.order(created_at: :desc))
     @actual_rating = Rating.find_by(user: current_user, item: @item)
     @rating = @actual_rating || @item.ratings.new
     @other_ratings = @item.ratings.includes(:user).where.not(comment: [nil, ""])
