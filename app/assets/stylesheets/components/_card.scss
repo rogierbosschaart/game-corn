@@ -1,11 +1,11 @@
+
+
 .card {
   width: 240px;
   color: #E7E6F7;
   background-image: linear-gradient(rgba(20,20,20,1.0), rgba(0,0,0,1));
   margin: 20px 10px;
-  // border: 1px solid #bdbcc9;
   border: none;
-  // border-radius: 6px;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     padding-left: 12px;
-    background-color: rgb(192, 1, 1);
+    background: linear-gradient(85deg, rgb(192, 1, 1), rgb(150, 2, 2));
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 
@@ -60,4 +60,24 @@
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(30, 30, 30, 0.2);
   cursor: pointer;
+}
+
+.new-item {
+  height: 50px;
+  clip-path: polygon(
+  100% 0%,     /* top-right */
+  0% 0%,       /* top-left */
+  0% 80%,      /* left edge before the triangle */
+  100% 100%,    /* triangle point down on the left */
+  100% 80%,    /* bottom-right corner back up */
+  100% 80%     /* closing point (bottom-right again) */
+);
+  background-image: linear-gradient(160deg, rgb(192, 1, 1), rgb(150, 2, 2));
+  font-size: 12px;
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  left: 80%;
+  padding: 2px 4px;
+  border-radius: 3px;
 }

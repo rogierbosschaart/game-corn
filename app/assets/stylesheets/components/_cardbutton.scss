@@ -1,5 +1,5 @@
 .card-button {
-  z-index: 10;
+  z-index: 9;
   position: absolute;
   display: flex;
   align-items: center;
@@ -33,6 +33,30 @@
     text-shadow: -0.5px -0.5px 1px rgba(100, 100, 100, 0.4);
   }
 }
+
+.edit-button {
+  position: absolute;
+  left: 92%;
+  bottom: 80px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: rgb(2, 156, 2);
+  border: 2px solid #BDBCC9;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    // line-height: 0px;
+    padding: 0;
+    font-size: 20px;
+    color: #E7E6F7;
+    font-weight: 900;
+    text-align: center;
+    text-shadow: -0.5px -0.5px 1px rgba(100, 100, 100, 0.4);
+  }
+}
+
 /* Styling for the rent button in the form */
 .rent-game-button {
   background: none;
@@ -60,12 +84,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-
-

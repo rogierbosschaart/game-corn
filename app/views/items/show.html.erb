@@ -92,11 +92,11 @@
     <div class="grid-right">
       <div class="user-info-section mx-1 mb-1">
 
+        <%# OTHER GAMES FROM USER %>
         <hr class="mt-0" >
-        <span class="mb-4">OTHER GAMES FROM: <%= @user.username %></span>
+        <span class="mb-4">OTHER GAMES FROM: <%= @user.username.upcase %></span>
         <hr>
 
-        <%# OTHER GAMES FROM USER %>
         <% if @user.items.excluding(@item).any? %>
           <div class="user-other-games-list">
             <% @user.items.excluding(@item).each do |other_item| %>

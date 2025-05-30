@@ -20,9 +20,12 @@
         <div class="card">
 
           <div class="card-platform">
-            <% if item.created_at > 2.days.ago %>
-              <span class="new-label">NEW</span>
-            <% end %>
+            <div class="new-item">
+              <% if item.created_at > 2.days.ago %>
+                <span class="new-label">NEW</span>
+              <% end %>
+            </div>
+
             <p>
               <i class="<%= platform_icon(item.platform) %>"></i>
               <%= item.platform %>
