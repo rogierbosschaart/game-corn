@@ -4,8 +4,9 @@ class ItemsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @items = Item.all.order(created_at: :desc)
 
+    @items = Item.all.order(created_at: :desc)
+    @rating = Rating.new
     if params[:query].present?
       @items = Item.search_by_params(params[:query]).order(created_at: :desc)
     end
@@ -13,7 +14,9 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find(@item.user_id)
-    @user = @item.user
+    @rating = Rating.new
+    @actual_rating = Rating.find_by(user: @user, item: @item)
+    @rating_value = @actual_rating&.value
     @markers = [ {
         lat: @item.latitude,
         lng: @item.longitude

@@ -1,0 +1,6 @@
+<div>
+  <%= simple_form_for rating do |f| %>
+    <%= f.input :value, as: :radio_buttons, collection: 1..5, required: true %>
+    <%= f.submit "Save rating", class: "btn btn-primary btn-lg" %>
+  <% end %>
+</div>
