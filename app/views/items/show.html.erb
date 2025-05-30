@@ -41,7 +41,9 @@
             </div>
           </div>
         </div>
-         <%= render 'ratings/form', rating: [@item, @rating] || Rating.new %>
+          <div class = "rating">
+          <%= render 'ratings/form', item: @item, rating: @rating %>
+          </div>
       </div>
 
       <%# RATINGS %>

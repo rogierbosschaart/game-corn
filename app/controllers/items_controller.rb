@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
     @user = User.find(@item.user_id)
     @actual_rating = Rating.find_by(user: current_user, item: @item)
     @rating = @actual_rating || @item.ratings.new
