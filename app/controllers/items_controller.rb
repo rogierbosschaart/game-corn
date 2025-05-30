@@ -16,9 +16,7 @@ class ItemsController < ApplicationController
     @user = User.find(@item.user_id)
     @actual_rating = Rating.find_by(user: current_user, item: @item)
     @rating = @actual_rating || @item.ratings.new
-    @rating_value = @rating.value
-    @user_rating = @item.ratings.find_by(user: current_user)
-    @other_ratings = @item.ratings.where.not(user: current_user).where.not(comment: [nil, ""])
+    @other_ratings = @item.ratings.includes(:user).where.not(comment: [nil, ""])
     @markers = [ {
         lat: @item.latitude,
         lng: @item.longitude

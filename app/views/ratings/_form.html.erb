@@ -4,8 +4,8 @@
   <%= simple_form_for([item, rating], html: { id: "rating-form" }) do |f| %>
     <div class="star-rating <%= 'readonly' if is_rated %>">
       <% 5.downto(1) do |i| %>
-        <%= f.radio_button :value, i, id: "star#{i}", class: 'star-input', checked: (rating.value == i), disabled: is_rated %>
-        <label for="star#{i}" class="star-label">★</label>
+        <input type="radio" name="rating[value]" value="<%= i %>" id="star<%= i %>" class="star-input" <%= "checked" if rating.value == i %>>
+        <label for="star<%= i %>" class="star-label">★</label>
       <% end %>
     </div>
 
