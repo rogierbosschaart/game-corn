@@ -57,27 +57,26 @@
     <%# GRID RIGHT %>
     <div class="grid-right" id="grid-right-dashboard">
       <div class="m-4">
-        <%# <span>USERNAME</span>
-        <h2> <%= @user.username %> </h2>
-        <h2>OFFERS</h2>
 
+        <h2>OFFERS</h2>
         <hr>
         <span>RECEIVED</span>
         <hr>
+
           <% @offers_received.each do |offer| %>
-          <div class="offer-received mb-2">
+          <div class="offer-received mb-2" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
             <%# IMAGE %>
             <% if offer.item.photo.attached? %>
-              <%= cl_image_tag offer.item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1" %>
+              <%= cl_image_tag offer.item.photo.key, height: 60, width: 44, crop: :fill, class: "rounded border border-black border-1" %>
             <% else %>
-              <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1" %>
+              <%= image_tag "placeholder_game.jpg", height: 60, width: 44, crop: :fill, class: "rounded border-black border-1" %>
             <% end %>
 
             <%# TITLE & DATES %>
             <div class="offer-header-dates d-flex flex-column justify-content-center text-start align-items-start">
-              <h2> <%= offer.item.title.truncate(20) %> </h2>
-              <p> <%= offer.comment.truncate(20) %> </p>
               <span> <%= offer.start_date %> / <%= offer.end_date %></span>
+              <h2> <%= offer.item.title.truncate(22) %> </h2>
+              <p> <%= offer.comment.truncate(22) %> </p>
             </div>
             <%# COMMENT & BUTTONS %>
 
@@ -98,16 +97,16 @@
           </div>
         <% end %>
 
-        <hr>
+        <hr class="mt-5">
         <span>SENT</span>
         <hr>
           <% @offers_made.each do |offer| %>
             <%# IMAGE %>
              <div class="offer mb-2">
                <% if offer.item.photo.attached? %>
-                  <%= cl_image_tag offer.item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1" %>
+                  <%= cl_image_tag offer.item.photo.key, height: 60, width: 44, crop: :fill, class: "rounded border border-black border-1" %>
                 <% else %>
-                  <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1" %>
+                  <%= image_tag "placeholder_game.jpg", height: 60, width: 44, crop: :fill, class: "rounded border-black border-1" %>
                 <% end %>
                 <%# TITLE & DATES %>
                 <div class="offer-header-dates d-flex flex-column justify-content-center text-start align-items-start">
@@ -115,23 +114,23 @@
                   <% if offer.accepted == nil %>
                     <span>pending</span>
                   <% elsif offer.accepted == true %>
-                    <span>accepted</span>
+                    <span class="icon-green">accepted</span>
                   <% else %>
-                    <span>denied</span>
+                    <span class="icon-red">denied</span>
                   <% end %>
                 </div>
                   <%# DELETE ICON %>
                 <%= link_to offer_path(offer), class: "d-flex justify-content-center align-items-center", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                  <i class="fa-regular fa-trash-can"></i>
+                  <i class="fa-regular fa-trash-can icon-grey"></i>
                 <% end %>
-
              </div>
           <% end %>
-
       </div>
     </div>
   </div>
 </div>
+
+<%# MODAL %>
 
 <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg"> <%# modal-lg для большей ширины, modal-dialog-centered для центрирования по вертикали %>
