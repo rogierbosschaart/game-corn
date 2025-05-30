@@ -6,7 +6,7 @@
 }
 .search-form input[type=text] {
   color: #E7E6F7;
-  background-color: black;
+  background-color: #0A070E;
   flex: 1;
   margin-left: 20px;
   border: none;
@@ -16,12 +16,12 @@
 }
 .search-form input[type=text]:focus {
   color: white;
-  background-color: black;
+  background-color: #0A070E;
   outline: none;
 }
 /* Fix for autocomplete styling */
 .search-form input[type=text]:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0 30px black inset !important;
+  -webkit-box-shadow: 0 0 0 30px #0A070E inset !important;
   -webkit-text-fill-color: #E7E6F7 !important;
 }
 .search-form input[type=submit] {
