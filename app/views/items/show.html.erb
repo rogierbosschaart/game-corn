@@ -66,8 +66,8 @@
                       <span class="star-display <%= 'filled' if r.value >= i %>">★</span>
                     <% end %>
                   </div>
-                  <p><%= r.comment %></p>
-                  <small>Оценил: <%= r.user.name %></small>
+                  <p><%= rating.comment %></p>
+                  <small>RATED BY: <%= rating.user.name %></small>
                   <hr>
                 </div>
               <% end %>

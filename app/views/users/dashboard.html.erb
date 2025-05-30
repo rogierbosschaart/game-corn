@@ -26,30 +26,36 @@
 
       <div class="cards-section">
         <% @items.each do |item| %>
-          <div class="card"
-                role="button"
-                data-bs-toggle="modal"
-                data-bs-target="#editItemModal-<%= item.id %>">
-            <div class="card-platform">
-              <p>
-                <i class="<%= platform_icon(item.platform) %>"></i>
-                <%= item.platform %>
-              </p>
-            </div>
-            <% if item.photo.key %>
-              <%= cl_image_tag item.photo.key %>
-            <% end %>
-
-            <div class="card-title">
-              <h2><%= item.title %></h2>
-              <%= link_to item_path(item),
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                class: "card-button",
-                id: "delete-button" do %>
-                  <i class="fa-solid fa-xmark"></i>
+            <div class="card">
+              <div class="card-platform">
+                <p>
+                  <i class="<%= platform_icon(item.platform) %>"></i>
+                  <%= item.platform %>
+                </p>
+              </div>
+              <% if item.photo.key %>
+                <%= cl_image_tag item.photo.key %>
               <% end %>
+
+              <div class="card-title">
+                <h2><%= item.title %></h2>
+                <%# ADD NEW BUTTON HERE %>
+
+                <button type="button" class="edit-button"
+                  role="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editItemModal-<%= item.id %>">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+
+                <%= link_to item_path(item),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: "card-button",
+                  id: "delete-button" do %>
+                    <i class="fa-solid fa-xmark"></i>
+                <% end %>
+              </div>
             </div>
-          </div>
         <% end %>
       </div>
     </div>
