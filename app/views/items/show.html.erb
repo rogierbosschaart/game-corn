@@ -42,8 +42,39 @@
           </div>
         </div>
           <div class = "rating">
-          <%= render 'ratings/form', item: @item, rating: @rating %>
+            <% if @user_rating.present? %>
+              <p><strong>Your Rating:</strong></p>
+              <div class="star-rating-display">
+                <% 1.upto(5) do |i| %>
+                  <span class="star-display <%= 'filled' if @user_rating.value >= i %>">★</span>
+                <% end %>
+              </div>
+
+              <% if @user_rating.comment.present? %>
+                <p><strong>Your comment:</strong> <%= @user_rating.comment %></p>
+              <% end %>
+            <% else %>
+              <%= render 'ratings/form', item: @item, rating: @rating %>
+            <% end %>
           </div>
+          <div class="comments">
+            <% if @other_ratings.any? %>
+              <% @other_ratings.each do |r| %>
+                <div class="user-comment">
+                  <div class="star-rating-display">
+                    <% 1.upto(5) do |i| %>
+                      <span class="star-display <%= 'filled' if r.value >= i %>">★</span>
+                    <% end %>
+                  </div>
+                  <p><%= r.comment %></p>
+                  <small>Оценил: <%= r.user.name %></small>
+                  <hr>
+                </div>
+              <% end %>
+            <% else %>
+              <p>No comments</p>
+            <% end %>
+        </div>
       </div>
 
       <%# RATINGS %>

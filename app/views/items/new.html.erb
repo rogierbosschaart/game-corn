@@ -1,5 +1,5 @@
 
-<%= simple_form_for @item do |f| %>
+<%= form_with(model: [item, rating], html: { id: "rating-form" }) do |f| %>
   <%= f.input :title %>
   <%= f.input :photo, as: :file %>
   <%= f.input :description %>

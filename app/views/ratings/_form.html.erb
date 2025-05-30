@@ -1,12 +1,22 @@
+<% is_rated = rating.persisted? %>
+
 <div>
-  <%= form_with(model: [item, rating], html: { id: "rating-form" }) do |f| %>
-    <div class="star-rating">
+  <%= simple_form_for([item, rating], html: { id: "rating-form" }) do |f| %>
+    <div class="star-rating <%= 'readonly' if is_rated %>">
       <% 5.downto(1) do |i| %>
-        <input type="radio" name="rating[value]" value="<%= i %>" id="star<%= i %>" class="star-input" <%= "checked" if rating.value == i %>>
-        <label for="star<%= i %>" class="star-label">★</label>
+        <%= f.radio_button :value, i, id: "star#{i}", class: 'star-input', checked: (rating.value == i), disabled: is_rated %>
+        <label for="star#{i}" class="star-label">★</label>
       <% end %>
     </div>
 
-    <%= f.submit rating.persisted? ? "Update Rating" : "Save Rating", class: "btn btn-primary mt-2" %>
+    <div class="form-group mt-2">
+      <%= f.input :comment, input_html: { disabled: is_rated, rows: 3, class: "form-control" }, label: "Comment" %>
+    </div>
+
+    <% unless is_rated %>
+      <%= f.submit "Submit Rating", class: "btn btn-primary mt-2" %>
+    <% else %>
+      <button class="btn btn-secondary mt-2" disabled>Rating Submitted</button>
+    <% end %>
   <% end %>
 </div>
