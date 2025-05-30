@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show, :new, :create, :destroy, :edit, :update] do
     resources :offers, only: [:new, :create]
+    resources :ratings, only: [:new, :create, :update]
   end
 
   resources :offers, only: [:update, :destroy]

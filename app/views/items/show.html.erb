@@ -40,6 +40,25 @@
           </div>
       </div>
     <div class="grid-right">
+      <div class="user-info m-4">
+        <span class="user-info-text">USER</span>
+        <h2> <%= @user.username %> </h2>
+        <hr style="border: 1px solid #E7E6F7">
+        <span>TOP GAMES FROM USER</span>
+        <ul>
+          <li>MarioKart</li>
+        </ul>
+        <%= render 'ratings/form', rating: [@item, @rating] || Rating.new %>
+      </div>
+      <div style="width: 80%; height: 200px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+      <div>
+        <% if  @rating_value  %>
+              <%= @rating_value %>
+
       <div class="user-info-section m-1">
 
 
