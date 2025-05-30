@@ -20,11 +20,12 @@
         <div class="card">
 
           <div class="card-platform">
-            <div class="new-item">
               <% if item.created_at > 5.minutes.ago %>
+              <div class="new-item">
                 <span class="new-label">NEW</span>
+                </div>
               <% end %>
-            </div>
+
 
             <p>
               <i class="<%= platform_icon(item.platform) %>"></i>
