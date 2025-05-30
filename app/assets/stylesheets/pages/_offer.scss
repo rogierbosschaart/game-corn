@@ -38,3 +38,60 @@
       flex-shrink: 0; // Предотвращает сжатие изображения
     }
   }
+
+  /* Стили для контейнера формы с классом .form-container */
+.form-container {
+  background-color: #0A070E; /* Темный фон для формы */
+  color: #E7E6F7;           /* Светлый цвет текста по умолчанию для формы */
+  border-radius: 8px;        /* Скругленные углы для контейнера формы */
+  border: 1px solid #0A070E;    /* Небольшая рамка вокруг контейнера */
+          /* Опционально: центрировать форму на странице */
+}
+
+/* Стили для меток (labels) внутри .form-container */
+.form-container label {
+  color: #E7E6F7;
+  font-weight: bold;
+  display: block;
+}
+
+/* Общие стили для полей ввода и текстовых областей в .form-container */
+.form-container input[type="start_date"],
+.form-container input[type="end_date"],
+.form-container input[type="comment"],
+.form-container input[type="date"],
+.form-container input[type="datetime-local"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
+  background-color:#0A070E;
+  color: #E7E6F7; 
+  border: 1px solid#E7E6F7;
+  border-radius: 10px;
+}
+
+/* Стили для полей ввода при фокусе в .form-container */
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus,
+.form-container input[type="date"]:focus,
+.form-container input[type="datetime-local"]:focus,
+.form-container input[type="number"]:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  border-color: #0A070E;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+/* Цвет плейсхолдера (подсказывающего текста в поле) в .form-container */
+.form-container ::placeholder {
+  color: #0A070E;
+  opacity: 1;
+}
+.form-container :-ms-input-placeholder {
+  color:#0A070E;
+}
+.form-container ::-ms-input-placeholder {
+  color: #0A070E;
+}
