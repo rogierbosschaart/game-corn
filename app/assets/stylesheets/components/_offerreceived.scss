@@ -1,32 +1,43 @@
 .offer-received {
-  border-bottom: 0.5px solid grey;
+  // border-bottom: 0.5px solid grey;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
 
   .offer-comment-buttons {
     display: grid;
     grid-template-columns: 3fr 1fr;
 
-    p {
-      font-size: 12px;
-      margin-bottom: 2px;
-    }
+    // h2, p, span {
+    //   font-size: 12px;
+    //   margin: -
+    // }
 
-    .offer-buttons {
-      display: flex;
-      justify-content: space-evenly;
-    }
+    // .offer-buttons {
+    //   width: 20px;
+    //   display: flex;
+    //   justify-content: space-evenly;
+    //   align-items: center;
+    // }
   }
 }
 
 .offer-header-dates {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2px;
+    // // display: flex;
+    // // flex-direction: column;
+    // // justify-content: space-between;
+    // margin-top: 2px;
 
-    span {
+    h2, span, p {
       font-size: 12px;
+      margin: 0;
     }
     h2 {
       font-size: 14px;
       font-weight: 800;
     }
   }
+
+.offer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
