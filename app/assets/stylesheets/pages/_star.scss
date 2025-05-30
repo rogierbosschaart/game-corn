@@ -2,6 +2,11 @@
   display: inline-flex;
   flex-direction: row-reverse;
   gap: 0.3rem;
+
+  &.readonly .star-label {
+    pointer-events: none;
+    opacity: 0.6;
+  }
 }
 
 .star-input {
@@ -17,4 +22,21 @@
 
 .star-input:checked ~ .star-label {
   color: gold;
+}
+
+.star-rating-display {
+  display: inline-flex;
+  font-size: 1.5rem;
+}
+
+.star-display {
+  color: #ccc;
+}
+
+.star-display.filled {
+  color: gold;
+}
+
+.user-comment {
+  margin-bottom: 1rem;
 }
