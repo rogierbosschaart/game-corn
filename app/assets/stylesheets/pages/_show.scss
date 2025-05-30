@@ -20,3 +20,21 @@
 .grid-right {
   border-left: 2px solid #E7E6F7;
 }
+
+.rating-section {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  border-top: 2px solid #E7E6F7;
+  border-bottom: 2px solid #E7E6F7;
+  margin-top: 160px;
+  padding: 10px 0px 20px 0px;
+
+  .user-comment {
+    border-bottom: 1px solid #E7E6F7;
+    padding: 0 12px;
+
+    .user-comment-text {
+      margin-bottom: 8px;
+    }
+  }
+}

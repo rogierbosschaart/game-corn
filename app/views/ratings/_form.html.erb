@@ -10,13 +10,13 @@
     </div>
 
     <div class="form-group mt-2">
-      <%= f.input :comment, input_html: { disabled: is_rated, rows: 3, class: "form-control" }, label: "Comment" %>
+      <%= f.input :comment, input_html: { disabled: is_rated, rows: 3, class: "form-control" } %>
     </div>
 
-    <% unless is_rated %>
-      <%= f.submit "Submit Rating", class: "button-submit-ratings" %>
-    <% else %>
-      <button class="button-submit-ratings " disabled>Rating Submitted</button>
-    <% end %>
+    <%# unless is_rated %>
+      <%= f.submit "SEND", class: "button-submit-ratings d-flex justify-content-end" %>
+    <%# else %>
+      <%# <button class="button-submit-ratings " disabled>SEND</button> %>
+    <%# end %>
   <% end %>
 </div>
