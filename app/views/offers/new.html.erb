@@ -35,18 +35,18 @@
       <div class="offer-form-column">
         <h2><%= @item.title %></h2>
         <%= simple_form_for [@item, @offer] do |f| %>
-  <%= f.input :start_date, label: "Start Date:" %>
-  <%= f.input :end_date, label: "End Date:" %>
-  <%= f.input :comment, label: "Your Message (optional):", input_html: { rows: 5 } %>
-  <%= f.button :submit, "Send Rental Request", class: "btn btn-primary w-100" %>
-<% end %>
+          <%= f.input :start_date, label: "START DATE:" %>
+          <%= f.input :end_date, label: "END DATE:" %>
+          <%= f.input :comment, label: "MESSAGE (OPTIONAL):", input_html: { rows: 5 } %>
+          <%= f.button :submit, "RENT", class: "card-button", id: "button-rent" %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
   </div>
 
-  <hr>
+  <%# <hr>
     <div class="text-center mb-4">
         <h2>Your Quest for Fun Begins Here</h2>
-    </div>
+    </div> %>
 </div>

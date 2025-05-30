@@ -2,11 +2,9 @@
   <div class="grid-container">
 
     <div class="grid-left m-4" id="grid-left-dashboard">
-      <button type="button" class="btn btn-primary btn-lg mb-4" data-bs-toggle="modal" data-bs-target="#addItemModal">
-        <i class="fa-solid fa-plus me-2"></i> Add New Game
-        </button>
 
-        <% if flash[:alert] %>
+
+      <% if flash[:alert] %>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <%= flash[:alert] %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -19,38 +17,40 @@
         </div>
       <% end %>
 
-      <h2 class="text-center">MY GAMES</h2>
+      <div class="header d-flex justify-content-between my-2 mx-3">
+        <h2 class="text-center">MY GAMES</h2>
+        <button type="button" class="button-add" data-bs-toggle="modal" data-bs-target="#addItemModal">
+          <span><i class="fa-solid fa-plus me-2"></i>ADD GAME</span>
+        </button>
+      </div>
+
       <div class="cards-section">
         <% @items.each do |item| %>
-        <div class="card">
-          <div class="card-platform">
-            <p>
-              <i class="<%= platform_icon(item.platform) %>"></i>
-              <%= item.platform %>
-            </p>
+          <div class="card"
+                role="button"
+                data-bs-toggle="modal"
+                data-bs-target="#editItemModal-<%= item.id %>">
+            <div class="card-platform">
+              <p>
+                <i class="<%= platform_icon(item.platform) %>"></i>
+                <%= item.platform %>
+              </p>
+            </div>
+            <% if item.photo.key %>
+              <%= cl_image_tag item.photo.key %>
+            <% end %>
+
+            <div class="card-title">
+              <h2><%= item.title %></h2>
+              <%= link_to item_path(item),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "card-button",
+                id: "delete-button" do %>
+                  <i class="fa-solid fa-xmark"></i>
+              <% end %>
+            </div>
           </div>
-
-          <%# Put the image back here %>
-          <% if item.photo.key %>
-            <%= cl_image_tag item.photo.key, height: 450, width: 300, crop: :fill %>
-          <% end %>
-
-          <div class="card-title">
-            <h2><%= item.title %></h2>
-            <%= link_to "Delete",
-              item_path(item),
-              data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-              class: "btn btn-danger btn-sm me-2"
-            %>
-            <button type="button" class="btn btn-warning btn-sm"
-            data-bs-toggle="modal"
-            data-bs-target="#editItemModal-<%= item.id %>">
-              <i class="fa-solid fa-pencil me-1"></i>Edit
-            </button>
-          </div>
-
-        </div>
-      <% end %>
+        <% end %>
       </div>
     </div>
 
@@ -70,7 +70,19 @@
             <div class="offer-comment-buttons">
               <p> <%= offer.comment.truncate(35) %> </p>
               <div class="offer-buttons">
-                <i class="fa-solid fa-thumbs-up"></i>
+
+                <%= link_to offer_path(offer, accepted: true),
+                    data: { turbo_method: :patch } do %>
+                  <i class="fa-solid fa-thumbs-up
+                    <%= offer.accepted == true ? 'icon-green' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
+                <% end %>
+
+                <%= link_to offer_path(offer, accepted: false),
+                    data: { turbo_method: :patch } do %>
+                  <i class="fa-solid fa-thumbs-down
+                  <%= offer.accepted == false ? 'icon-red' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
+                <% end %>
+
                 <%= link_to offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
                   <i class="fa-regular fa-trash-can"></i>
                 <% end %>
@@ -134,4 +146,3 @@
   </div>
 </div>
 <% end %>
-

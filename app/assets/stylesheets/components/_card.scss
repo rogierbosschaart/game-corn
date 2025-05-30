@@ -1,6 +1,5 @@
 .card {
   width: 240px;
-  // height: 350px;
   color: #E7E6F7;
   background-image: linear-gradient(rgba(20,20,20,1.0), rgba(0,0,0,1));
   margin: 20px 10px;
@@ -13,6 +12,9 @@
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: visible;
+
 
   .card-platform {
     display: flex;
@@ -46,8 +48,9 @@
       align-items: center;
       padding-left: 12px;
       margin: 8px 0px;
+
       h2 {
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 800;
 
       }
@@ -55,6 +58,6 @@
 }
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(30, 30, 30, 0.2);
   cursor: pointer;
 }

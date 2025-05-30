@@ -26,11 +26,11 @@
               </div>
               <div class="text-container">
                 <h2><%= @item.title %></h1>
-                <p><strong>Genre:</strong> <%= @item.genre %></p>
-                <p><strong>Description:</strong> <%= @item.description %></p>
+                <p><%= @item.genre %></p>
+                <p><em>"<%= @item.description %>"</em></p>
               </div>
               <%= link_to new_item_offer_path(@item) do %>
-                <div class="offer-button">
+                <div class="card-button">
                   <span>RENT GAME</span>
                 </div>
               <% end %>
@@ -58,6 +58,44 @@
       <div>
         <% if  @rating_value  %>
               <%= @rating_value %>
+
+      <div class="user-info-section m-1">
+
+
+        <div class="map-container mb-4">
+          <div style="width: 100%; padding-bottom: 100%; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+              data-controller="map"
+              data-map-markers-value="<%= @markers.to_json %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mb-2"><%= @user.username %></h3>
+        <hr class="my-3">
+
+        <h5 class="mb-3">OTHER GAMES FROM: <%= @user.username %></h5>
+        <% if @user.items.excluding(@item).any? %>
+          <div class="user-other-games-list">
+            <% @user.items.excluding(@item).each do |other_item| %>
+            <%= link_to item_path(other_item), class: "text-decoration-none text-white" do %>
+              <div class="other-game-card mb-2 d-flex align-items-center">
+                  <% if other_item.photo.attached? %>
+                    <%= cl_image_tag other_item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1 me-2" %>
+                  <% else %>
+                    <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1 me-2" %>
+                  <% end %>
+                 <div class="d-flex justify-content-between align-items-center w-100">
+                   <p class = "fw-bold m-0"> <%= other_item.title  %> </p>
+                   <i class="<%= platform_icon(other_item.platform) %>"></i>
+                 </div>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="text-muted">This user doesn't have any more games.</p>
         <% end %>
       </div>
     </div>

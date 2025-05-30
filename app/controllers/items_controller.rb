@@ -4,10 +4,11 @@ class ItemsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
-    @items = Item.all
+
+    @items = Item.all.order(created_at: :desc)
     @rating = Rating.new
     if params[:query].present?
-      @items = Item.search_by_params(params[:query])
+      @items = Item.search_by_params(params[:query]).order(created_at: :desc)
     end
   end
 

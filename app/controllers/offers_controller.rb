@@ -29,16 +29,11 @@ class OffersController < ApplicationController
     end
   end
 
-    # def edit
-    # end
-
-    # def update
-    #     if @offer.update(offer_params)
-    #     redirect_to @offer, notice: 'Offer was successfully updated.'
-    #     else
-    #     render :edit
-    #     end
-    # end
+  def update
+    offer = Offer.find(params[:id])
+    offer.update(accepted: params[:accepted])
+    redirect_to dashboard_path
+  end
 
     def destroy
       @offer = Offer.find(params[:id])
