@@ -1,0 +1,4 @@
+<%= simple_form_for [@item, @rating] do |f| %>
+  <%= f.input :value, as: :radio_buttons, collection: 1..5, required: true %>
+  <%= f.submit %>
+<% end %>

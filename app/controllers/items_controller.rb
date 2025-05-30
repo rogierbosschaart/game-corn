@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-
+    @rating = Rating.new
     if params[:query].present?
       @items = Item.search_by_params(params[:query])
     end
@@ -13,6 +13,9 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find(@item.user_id)
+    @rating = Rating.new
+    @actual_rating = Rating.find_by(user: @user, item: @item)
+    @rating_value = @actual_rating&.value
     @markers = [ {
         lat: @item.latitude,
         lng: @item.longitude
@@ -44,7 +47,7 @@ class ItemsController < ApplicationController
   def edit
     respond_to do |format|
       format.html # edit.html.erb
-      format.turbo_stream do 
+      format.turbo_stream do
         render turbo_stream: turbo_stream.update("edit_item_form_#{@item.id}", partial: "items/form", locals: { item: @item })
       end
     end
