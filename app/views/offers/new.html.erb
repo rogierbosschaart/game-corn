@@ -2,15 +2,11 @@
     <h1><i class="fa-solid fa-gamepad"></i> GameCorn <i class="fa-solid fa-gamepad"></i></h1>
     <h2>RENT  |  GAME  |  RETURN</h2>
 </div>
-
 <div class="container mt-4">
-
   <%= link_to "BACK", item_path(@item), class:"button-back" %>
-
   <div class="text-center mb-4">
     <h1>Play <%= @item.title %> & Have a Fun</h1>
   </div>
-
   <% if @offer.errors.any? %>
     <div class="error-message-box">
       <h2><%= pluralize(@offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
@@ -21,7 +17,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="outline-container">
     <div class="item-container">
       <div class="image-container">
@@ -31,22 +26,32 @@
           <div class="placeholder-image">No image available</div>
         <% end %>
       </div>
-
-      <div class="offer-form-column">
+      <div class="offer-form-column position-relative">
         <h2><%= @item.title %></h2>
         <%= simple_form_for [@item, @offer] do |f| %>
           <%= f.input :start_date, label: "START DATE:" %>
           <%= f.input :end_date, label: "END DATE:" %>
           <%= f.input :comment, label: "MESSAGE (OPTIONAL):", input_html: { rows: 5 } %>
-          <%= f.button :submit, "RENT", class: "card-button", id: "button-rent" %>
+          <button type="submit" class="rent-game-button">
+            <div class="card-button">
+              <span>RENT</span>
+            </div>
+          </button>
         <% end %>
       </div>
     </div>
-
   </div>
-
   <%# <hr>
     <div class="text-center mb-4">
         <h2>Your Quest for Fun Begins Here</h2>
     </div> %>
 </div>
+
+
+
+
+
+
+
+
+

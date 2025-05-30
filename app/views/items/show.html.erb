@@ -5,9 +5,13 @@
 
 <div class="show-page">
   <div class="grid-container">
+
+  <%# GRID LEFT %>
     <div class="grid-left">
       <div class="item-info m-4">
         <%= link_to "BACK", root_path, class:"button-back" %>
+
+        <%# ITEM %>
         <div class="outline-container">
           <div class="item-container">
             <div class="image-container">
@@ -37,60 +41,47 @@
             </div>
           </div>
         </div>
-          </div>
+         <%= render 'ratings/form', rating: [@item, @rating] || Rating.new %>
       </div>
-    <div class="grid-right">
-      <div class="user-info m-4">
-        <span class="user-info-text">USER</span>
-        <h2> <%= @user.username %> </h2>
-        <hr style="border: 1px solid #E7E6F7">
-        <span>TOP GAMES FROM USER</span>
-        <ul>
-          <li>MarioKart</li>
-        </ul>
-        <%= render 'ratings/form', rating: [@item, @rating] || Rating.new %>
-      </div>
-      <div style="width: 80%; height: 200px;"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-      <div>
-        <% if  @rating_value  %>
-              <%= @rating_value %>
 
-      <div class="user-info-section m-1">
+      <%# RATINGS %>
 
-
-        <div class="map-container mb-4">
-          <div style="width: 100%; padding-bottom: 100%; position: relative;">
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+      <%# MAP %>
+      <div class="map-container m-4">
+          <div style="width: 100%; padding-bottom: 200px; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 200px;"
               data-controller="map"
               data-map-markers-value="<%= @markers.to_json %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
             </div>
           </div>
         </div>
+    </div>
 
-        <h3 class="mb-2"><%= @user.username %></h3>
-        <hr class="my-3">
+    <%# GRID RIGHT %>
+    <div class="grid-right">
+      <div class="user-info-section mx-1 mb-1">
 
-        <h5 class="mb-3">OTHER GAMES FROM: <%= @user.username %></h5>
+        <hr class="mt-0" >
+        <span class="mb-4">OTHER GAMES FROM: <%= @user.username %></span>
+        <hr>
+
+        <%# OTHER GAMES FROM USER %>
         <% if @user.items.excluding(@item).any? %>
           <div class="user-other-games-list">
             <% @user.items.excluding(@item).each do |other_item| %>
-            <%= link_to item_path(other_item), class: "text-decoration-none text-white" do %>
-              <div class="other-game-card mb-2 d-flex align-items-center">
+              <%= link_to item_path(other_item), class: "text-decoration-none text-white" do %>
+                <div class="other-game-card mb-2 d-flex align-items-center">
                   <% if other_item.photo.attached? %>
-                    <%= cl_image_tag other_item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1 me-2" %>
+                    <%= cl_image_tag other_item.photo.key, height: 90, width: 70, crop: :fill, class: "rounded border border-black border-1 me-2" %>
                   <% else %>
-                    <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1 me-2" %>
+                    <%= image_tag "placeholder_game.jpg", height: 90, width: 70, crop: :fill, class: "rounded border-black border-1 me-2" %>
                   <% end %>
-                 <div class="d-flex justify-content-between align-items-center w-100">
-                   <p class = "fw-bold m-0"> <%= other_item.title  %> </p>
-                   <i class="<%= platform_icon(other_item.platform) %>"></i>
-                 </div>
-              </div>
+                  <div class="d-flex justify-content-between align-items-center w-100">
+                    <p class = "fw-bold m-0"> <%= other_item.title  %> </p>
+                    <i class="<%= platform_icon(other_item.platform) %> p-2"></i>
+                  </div>
+                </div>
               <% end %>
             <% end %>
           </div>
