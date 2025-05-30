@@ -37,10 +37,14 @@
 
           <div class="card-title">
             <h2><%= item.title %></h2>
+              <div class="item-rating">
+                <div class="single-star-rating" style="--rating: <%= (item.average_rating.to_f / 5.0 * 100).round %>%;">
+                  ★
+                </div>
+                <span class="rating-number">(<%= item.average_rating.round(1) %>)</span>
+              </div>
           </div>
-
         </div>
-
       <% end %>
     <% end %>
 

@@ -18,9 +18,13 @@ class Item < ApplicationRecord
   validates :title, :genre, :platform, presence: true
   validates :title, uniqueness: { scope: :user, message: "you already added this game" }
 
+  def average_rating
+    return 0 if ratings.empty?
+    ratings.average(:value).to_f.round(1)
+  end
+
   def update_average_rating
-    new_average = ratings.average(:value)
-    update_column(:average_rating, new_average.to_f.round(1))
+    update(average_rating: average_rating)
   end
 
   include PgSearch::Model
