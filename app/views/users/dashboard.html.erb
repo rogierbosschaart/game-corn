@@ -65,31 +65,35 @@
         <span>RECEIVED</span>
         <hr>
           <% @offers_received.each do |offer| %>
-          <div class="offer-received">
-            <div class="offer-header-dates">
+          <div class="offer-received mb-2">
+            <%# IMAGE %>
+            <% if offer.item.photo.attached? %>
+              <%= cl_image_tag offer.item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1" %>
+            <% else %>
+              <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1" %>
+            <% end %>
+
+            <%# TITLE & DATES %>
+            <div class="offer-header-dates d-flex flex-column justify-content-center text-start align-items-start">
               <h2> <%= offer.item.title.truncate(20) %> </h2>
+              <p> <%= offer.comment.truncate(20) %> </p>
               <span> <%= offer.start_date %> / <%= offer.end_date %></span>
             </div>
-            <div class="offer-comment-buttons">
-              <p> <%= offer.comment.truncate(35) %> </p>
-              <div class="offer-buttons">
+            <%# COMMENT & BUTTONS %>
 
-                <%= link_to offer_path(offer, accepted: true),
-                    data: { turbo_method: :patch } do %>
-                  <i class="fa-solid fa-thumbs-up
-                    <%= offer.accepted == true ? 'icon-green' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
-                <% end %>
 
-                <%= link_to offer_path(offer, accepted: false),
-                    data: { turbo_method: :patch } do %>
-                  <i class="fa-solid fa-thumbs-down
+            <%# BUTTONS %>
+            <div class="offer-buttons d-flex justify-content-center align-items-center">
+              <%= link_to offer_path(offer, accepted: true),
+                      data: { turbo_method: :patch } do %>
+                <i class="fa-solid fa-thumbs-up mx-1
+                  <%= offer.accepted == true ? 'icon-green' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
+              <% end %>
+              <%= link_to offer_path(offer, accepted: false),
+                      data: { turbo_method: :patch } do %>
+                <i class="fa-solid fa-thumbs-down mx-1
                   <%= offer.accepted == false ? 'icon-red' : offer.accepted.nil? ? 'icon-grey' : '' %>"></i>
-                <% end %>
-
-                <%= link_to offer_path(offer), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
-                  <i class="fa-regular fa-trash-can"></i>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -98,10 +102,30 @@
         <span>SENT</span>
         <hr>
           <% @offers_made.each do |offer| %>
-            <div class="offer-header-dates">
-              <h2><%= offer.item.title %></h2>
-              <span><%= offer.start_date %> / <%= offer.end_date %></span>
-            </div>
+            <%# IMAGE %>
+             <div class="offer mb-2">
+               <% if offer.item.photo.attached? %>
+                  <%= cl_image_tag offer.item.photo.key, height: 60, width: 50, crop: :fill, class: "rounded border border-black border-1" %>
+                <% else %>
+                  <%= image_tag "placeholder_game.jpg", height: 60, width: 50, crop: :fill, class: "rounded border-black border-1" %>
+                <% end %>
+                <%# TITLE & DATES %>
+                <div class="offer-header-dates d-flex flex-column justify-content-center text-start align-items-start">
+                  <h2><%= offer.item.title.truncate(20) %></h2>
+                  <% if offer.accepted == nil %>
+                    <span>pending</span>
+                  <% elsif offer.accepted == true %>
+                    <span>accepted</span>
+                  <% else %>
+                    <span>denied</span>
+                  <% end %>
+                </div>
+                  <%# DELETE ICON %>
+                <%= link_to offer_path(offer), class: "d-flex justify-content-center align-items-center", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
+
+             </div>
           <% end %>
 
       </div>
